@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<meta name="theme-color" content="#3d2612">
+<meta name="robots" content="noindex,nofollow">
+<title>AR / MR अनुभव · स्मार्ट सभासद ओळखपत्र</title>
+<meta name="description" content="App-less WebAR experience launched from a smart-card QR: driver details, department films and an immersive 3D advertisement. DADSMPVCKM RFP prototype.">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<style>
+  :root{
+    --brown-d:#3d2612; --brown:#7a5224; --brown-m:#9e6e30;
+    --gold:#c9971f; --gold-l:#e8c766; --green:#1a6b3a; --green-d:#063a0f;
+    --ink:#2b1a10; --paper:#fff; --mut:#d9c7ae;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;height:100%;font-family:'Baloo 2','Nirmala UI',system-ui,sans-serif;
+    background:#1a0e06;color:#fff;-webkit-tap-highlight-color:transparent;overflow:hidden}
+  #app{position:fixed;inset:0;display:flex;flex-direction:column}
+
+  /* top bar */
+  .top{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;gap:10px;
+    padding:calc(env(safe-area-inset-top) + 10px) 14px 12px;
+    background:linear-gradient(180deg,rgba(26,14,6,.92),rgba(26,14,6,0))}
+  .top .badge{width:38px;height:38px;border-radius:9px;background:var(--gold);color:var(--brown-d);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0}
+  .top h1{margin:0;font-size:14.5px;font-weight:800;line-height:1.1}
+  .top p{margin:0;font-size:11px;color:var(--gold-l);font-weight:600}
+  .top .live{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
+    background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:4px 10px}
+  .live i{width:7px;height:7px;border-radius:50%;background:#39d353;box-shadow:0 0 8px #39d353;animation:pulse 1.4s infinite}
+  @keyframes pulse{50%{opacity:.4}}
+
+  /* 3D stage */
+  model-viewer{flex:1;width:100%;background:
+    radial-gradient(ellipse at 50% 30%,#5a3a1c 0%,#2c1a0c 60%,#160c05 100%);--poster-color:transparent}
+  .hs{--min-hotspot-opacity:0;background:var(--gold);border:2px solid #fff;border-radius:50%;
+    width:16px;height:16px;box-shadow:0 2px 8px rgba(0,0,0,.5);cursor:pointer}
+  .hs-label{background:rgba(26,14,6,.92);border:1px solid var(--brown-m);border-radius:8px;
+    padding:6px 10px;font-size:11.5px;font-weight:600;color:#fff;transform:translateY(-40px);white-space:nowrap;
+    box-shadow:0 4px 14px rgba(0,0,0,.5)}
+
+  /* AR button */
+  .ar-btn{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(var(--sheet-h,246px) + 14px);z-index:15;
+    display:flex;align-items:center;gap:8px;background:var(--gold);color:var(--brown-d);border:none;
+    border-radius:999px;padding:11px 22px;font-family:inherit;font-size:15px;font-weight:800;
+    box-shadow:0 8px 24px rgba(201,151,31,.5);cursor:pointer}
+  .ar-btn svg{width:18px;height:18px}
+  .ar-btn:active{transform:translateX(-50%) scale(.97)}
+
+  /* compliance chips */
+  .chips{position:absolute;left:0;right:0;bottom:calc(var(--sheet-h,246px) + 66px);z-index:14;
+    display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding:0 12px;pointer-events:none}
+  .chips span{font-size:10px;font-weight:700;color:var(--gold-l);background:rgba(0,0,0,.4);
+    border:1px solid rgba(201,151,31,.4);border-radius:20px;padding:3px 9px}
+
+  /* bottom sheet */
+  .sheet{position:relative;z-index:16;background:#20130a;border-top:1px solid #4a3016;
+    border-radius:18px 18px 0 0;padding:10px 14px calc(env(safe-area-inset-bottom) + 14px);
+    box-shadow:0 -10px 30px rgba(0,0,0,.5)}
+  .grip{width:40px;height:4px;border-radius:3px;background:#5a4326;margin:2px auto 10px}
+  .who{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .who .ph{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--brown-m),var(--brown-d));
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;color:#fff;flex-shrink:0}
+  .who b{display:block;font-size:15px;line-height:1.15}
+  .who small{color:var(--mut);font-size:11.5px}
+  .who .st{margin-left:auto;font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;white-space:nowrap}
+  .st.ok{background:rgba(57,211,83,.16);color:#7ee59a;border:1px solid rgba(57,211,83,.4)}
+  .st.bad{background:rgba(230,80,60,.16);color:#ffb0a3;border:1px solid rgba(230,80,60,.4)}
+  .st.warn{background:rgba(230,180,40,.16);color:#ffd66b;border:1px solid rgba(230,180,40,.4)}
+
+  .tabs{display:flex;gap:6px;margin-bottom:10px}
+  .tabs button{flex:1;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--mut);
+    background:#2c1a0c;border:1px solid #4a3016;border-radius:9px;padding:8px 4px;cursor:pointer}
+  .tabs button.on{background:var(--gold);color:var(--brown-d);border-color:var(--gold)}
+  .pane{display:none}
+  .pane.on{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}}
+
+  .pane video{width:100%;border-radius:12px;background:#000;display:block;max-height:34vh}
+  .ad{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,#2c1a0c,#3d2612);
+    border:1px solid #4a3016;border-radius:12px;padding:12px}
+  .ad .tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-l);font-weight:800}
+  .ad b{display:block;font-size:15px;margin:2px 0 3px}
+  .ad small{color:var(--mut);font-size:12px}
+  .ad .cta{margin-left:auto;background:var(--gold);color:var(--brown-d);border:none;border-radius:8px;
+    padding:9px 14px;font-family:inherit;font-weight:800;font-size:12.5px;cursor:pointer;white-space:nowrap}
+  .schemes{display:flex;flex-wrap:wrap;gap:7px}
+  .schemes span{font-size:12px;font-weight:700;color:#fff;background:#2c1a0c;border:1px solid var(--brown-m);
+    border-radius:20px;padding:6px 12px}
+  .voice{display:flex;align-items:center;gap:8px;width:100%;justify-content:center;margin-top:4px;
+    background:var(--green);color:#fff;border:none;border-radius:10px;padding:10px;font-family:inherit;
+    font-size:13.5px;font-weight:700;cursor:pointer}
+  .voice.speaking{background:var(--green-d)}
+  .foot{text-align:center;font-size:10px;color:#8a7256;margin-top:9px}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="top">
+    <div class="badge">ऑ</div>
+    <div>
+      <h1 id="hName">—</h1>
+      <p id="hReg">स्मार्ट सभासद ओळखपत्र</p>
+    </div>
+    <div class="live"><i></i>WebAR थेट</div>
+  </div>
+
+  <model-viewer id="mv"
+    src="msrtc-assets/ar-card.gltf"
+    alt="Smart card 3D advertisement"
+    ar ar-modes="webxr scene-viewer quick-look" ar-scale="auto"
+    camera-controls touch-action="pan-y" auto-rotate rotation-per-second="24deg"
+    interaction-prompt="auto" shadow-intensity="1.1" exposure="1.15"
+    camera-orbit="0deg 72deg 2.4m" min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto">
+    <button slot="hotspot-id" class="hs" data-position="-0.26 0.09 0.06" data-normal="0 0 1"
+      data-visibility-attribute="visible"><div class="hs-label">नोंदणीकृत सभासद</div></button>
+    <button slot="hotspot-ad" class="hs" data-position="0.30 0.10 0.03" data-normal="0 0 1"
+      data-visibility-attribute="visible"><div class="hs-label">प्रायोजित 3D जाहिरात</div></button>
+    <div slot="progress-bar"></div>
+  </model-viewer>
+
+  <div class="chips">
+    <span>App-less</span><span>Image + plane tracking</span><span>Dynamic content</span><span>≥30 FPS</span>
+  </div>
+
+  <button class="ar-btn" id="arBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+    आपल्या जागेत बघा (AR)
+  </button>
+
+  <div class="sheet" id="sheet">
+    <div class="grip"></div>
+    <div class="who">
+      <div class="ph" id="hInit">ऑ</div>
+      <div><b id="hName2">—</b><small id="hMeta">—</small></div>
+      <div class="st ok" id="hStatus">वैध</div>
+    </div>
+    <div class="tabs">
+      <button class="on" data-tab="ad">3D जाहिरात</button>
+      <button data-tab="film">विभागाचा चित्रपट</button>
+      <button data-tab="schemes">योजना</button>
+    </div>
+    <div class="pane on" data-pane="ad">
+      <div class="ad">
+        <div>
+          <span class="tag" id="adBrand">प्रायोजक</span>
+          <b id="adHead">आपल्या ऑटोसाठी सुरक्षित टायर</b>
+          <small id="adBody">स्कॅनवर चालणारी मिश्र-वास्तव जाहिरात — मंडळाला उत्पन्न मिळवून देते.</small>
+        </div>
+        <button class="cta">अधिक</button>
+      </div>
+      <button class="voice" id="voiceBtn">🔊 मराठीत ऐका</button>
+    </div>
+    <div class="pane" data-pane="film">
+      <video id="deptVideo" controls preload="none" poster="msrtc-assets/mandal-banner.png">
+        <source src="msrtc-assets/Video2.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="pane" data-pane="schemes">
+      <div class="schemes" id="schemeList"></div>
+    </div>
+    <div class="foot" id="foot">DADSMPVCKM · WebAR प्रात्यक्षिक · सामग्री मंडळाच्या मान्यतेनंतर प्रसारित</div>
+  </div>
+</div>
+
+<script src="data.js?v=3"></script>
+<script>
+(function () {
+  var SCHEME_MR = {
+    "Accident insurance cover": "अपघात विमा संरक्षण", "Term life cover": "मुदत जीवन विमा",
+    "Children's scholarship": "पाल्यांसाठी शिष्यवृत्ती", "Medical assistance": "आरोग्यविषयक लाभ",
+    "Retirement benefit fund": "सन्मान निधी"
+  };
+  var ADS = [
+    ["टायर एक्स्प्रेस", "आपल्या ऑटोसाठी सुरक्षित टायर", "सवलतीच्या दरात — जवळच्या केंद्रावर."],
+    ["महा फ्युएल", "सीएनजी रिफिल कॅशबॅक", "प्रत्येक रिफिलवर बचत, थेट खात्यात."],
+    ["ड्राइव्ह-केअर विमा", "कमी हप्त्यात अपघात कवच", "मंडळ सदस्यांसाठी खास दर."]
+  ];
+  function $(id){ return document.getElementById(id); }
+  function tok(){ return (new URLSearchParams(location.search).get("t") || "").toUpperCase(); }
+  function initials(name){ return (name||"").trim().charAt(0) || "ऑ"; }
+  function findHolder(t){
+    var list = (typeof SEED_HOLDERS !== "undefined") ? SEED_HOLDERS : [];
+    for (var i=0;i<list.length;i++) if (String(list[i].token).toUpperCase() === t) return list[i];
+    return list[0] || null;
+  }
+  function statusOf(h){
+    if (!h) return ["—","warn"];
+    if (h.status === "suspended") return ["निलंबित","warn"];
+    if (h.status === "revoked") return ["रद्द","bad"];
+    var today = new Date(); today.setHours(0,0,0,0);
+    return (new Date(h.validTo+"T00:00:00") < today) ? ["मुदत संपली","bad"] : ["वैध","ok"];
+  }
+
+  var h = findHolder(tok());
+  if (h) {
+    var nm = h.nameMr || h.name;
+    $("hName").textContent = nm;
+    $("hName2").textContent = nm;
+    $("hReg").textContent = h.regNo;
+    $("hInit").textContent = initials(nm);
+    var vt = { "Auto Rickshaw":"ऑटो रिक्षा","Taxi (Kaali-Peeli)":"टॅक्सी","App-based Cab":"ॲप कॅब",
+      "School Bus":"स्कूल बस","Tourist Vehicle":"पर्यटक वाहन","Goods Carrier (LCV)":"मालवाहू","Private Bus":"बस" }[h.vehicleType] || h.vehicleType;
+    $("hMeta").textContent = vt + " · " + h.regNo;
+    var st = statusOf(h);
+    var stEl = $("hStatus"); stEl.textContent = st[0]; stEl.className = "st " + st[1];
+    // schemes
+    var sc = (h.schemes || []).map(function(s){ return "<span>" + (SCHEME_MR[s] || s) + "</span>"; }).join("");
+    $("schemeList").innerHTML = sc || "<span>—</span>";
+    // ad by campaign hash
+    var idx = Math.abs((h.token||"").split("").reduce(function(a,c){return a + c.charCodeAt(0);},0)) % ADS.length;
+    $("adBrand").textContent = ADS[idx][0];
+    $("adHead").textContent = ADS[idx][1];
+    $("adBody").textContent = ADS[idx][2];
+  }
+
+  // tabs
+  document.querySelectorAll(".tabs button").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll(".tabs button").forEach(function(x){ x.classList.remove("on"); });
+      document.querySelectorAll(".pane").forEach(function(x){ x.classList.remove("on"); });
+      b.classList.add("on");
+      document.querySelector('.pane[data-pane="'+b.dataset.tab+'"]').classList.add("on");
+      if (b.dataset.tab !== "film") { var v=$("deptVideo"); if(v && !v.paused) v.pause(); }
+    });
+  });
+
+  // AR button -> trigger model-viewer AR (falls back to 3D on desktop)
+  var mv = $("mv");
+  $("arBtn").addEventListener("click", function(){
+    if (mv && typeof mv.activateAR === "function" && mv.canActivateAR) { mv.activateAR(); }
+    else { mv.cameraOrbit = "0deg 60deg 1.8m"; alert("AR मोडसाठी हे पान मोबाइलवर QR स्कॅन करून उघडा. डेस्कटॉपवर 3D मॉडेल फिरवून पाहा."); }
+  });
+
+  // sheet height feeds CSS var so AR button/chips sit above it
+  function sizeSheet(){ document.documentElement.style.setProperty("--sheet-h", $("sheet").offsetHeight + "px"); }
+  window.addEventListener("resize", sizeSheet); setTimeout(sizeSheet, 60); sizeSheet();
+
+  // Marathi voice narration
+  var speaking = false;
+  $("voiceBtn").addEventListener("click", function(){
+    if (!("speechSynthesis" in window)) { alert("या ब्राउझरमध्ये आवाज उपलब्ध नाही."); return; }
+    var btn = this;
+    if (speaking) { speechSynthesis.cancel(); return; }
+    var nm = (h && (h.nameMr||h.name)) || "सभासद";
+    var msg = new SpeechSynthesisUtterance(
+      nm + " यांचे धर्मवीर आनंद दिघे साहेब महाराष्ट्र प्रवासी वाहतूक चालक कल्याणकारी मंडळात स्वागत आहे. " +
+      "हे ओळखपत्र वैध असून सर्व कल्याणकारी योजनांचा लाभ यावर उपलब्ध आहे.");
+    var vs = speechSynthesis.getVoices();
+    var mv2 = vs.filter(function(v){ return /^(mr|hi)/i.test(v.lang.replace("_","-")); })[0];
+    if (mv2) { msg.voice = mv2; msg.lang = mv2.lang; } else { msg.lang = "hi-IN"; }
+    msg.rate = 0.9; msg.pitch = 1.1;
+    msg.onstart = function(){ speaking = true; btn.classList.add("speaking"); btn.textContent = "⏹ थांबवा"; };
+    msg.onend = msg.onerror = function(){ speaking = false; btn.classList.remove("speaking"); btn.textContent = "🔊 मराठीत ऐका"; };
+    speechSynthesis.speak(msg);
+  });
+
+  // update AR button label once model-viewer knows AR capability
+  mv.addEventListener("load", function(){
+    if (mv.canActivateAR) $("arBtn").lastChild.textContent = " आपल्या जागेत बघा (AR)";
+  });
+})();
+</script>
+</body>
+</html>

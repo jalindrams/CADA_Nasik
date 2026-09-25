@@ -728,10 +728,10 @@
       return '<a class="chip' + (x.id === c.id ? " on" : "") + '" href="#/ar/' + esc(h.id) + "?c=" + esc(x.id) + '">' + esc(x.brand) + "</a>";
     }).join("");
 
-    return '<div class="panel"><div class="panel-head"><div><h1>AR / MR experience (conceptual)</h1>' +
+    return '<div class="panel"><div class="panel-head"><div><h1>AR / MR experience</h1>' +
         '<p class="muted" style="margin:0">Step 7 - scanning the card launches an augmented layer over the physical card. ' +
-        "Shown here as a simulation using sample content.</p></div>" +
-        '<span class="badge active"><i class="dot"></i>Step 7 of 7</span></div>' +
+        "The schematic below explains the flow; the button opens the live, app-less WebAR page.</p></div>" +
+        '<a class="btn accent" href="ar.html?t=' + esc(h.token) + '" target="_blank" rel="noopener">Launch live WebAR &rarr;</a></div>' +
       '<div class="ar-stage"><div class="ar-grid"></div>' +
         '<div class="ar-card"><div style="font-size:9px;letter-spacing:.14em;opacity:.8">' + esc(ORG.shortName) + " SMART ID</div>" +
           '<div style="font-weight:700;margin-top:6px">' + esc(h.name) + "</div>" +
@@ -764,8 +764,8 @@
             "<li><b>Sponsored layer</b><br><span class=\"muted\">A brand panel is served alongside - the monetisable inventory described in the RFP.</span></li>" +
             "<li><b>Action &amp; measurement</b><br><span class=\"muted\">Taps are logged per campaign, per district and per card series.</span></li>" +
           "</ul>" +
-          '<div class="note warn">This screen is a conceptual demonstration built with web animation, not a production AR runtime. ' +
-          "A production build would use WebXR or a native SDK with image-target tracking.</div>" +
+          '<div class="note">The panel above is a schematic. The <a href="ar.html?t=' + esc(h.token) + '" target="_blank" rel="noopener">live WebAR page</a> ' +
+          "runs a real app-less 3D experience (model-viewer / WebXR) with holder details, department films and a 3D sponsor layer - open it on a phone to place the card in your space.</div>" +
         "</div>" +
         '<div class="panel"><h2>Campaign inventory (demo figures)</h2>' +
           '<div class="tbl-wrap"><table style="min-width:auto"><thead><tr><th>Campaign</th><th>Brand</th><th>Impressions</th></tr></thead><tbody>' +
