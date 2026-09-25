@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#7a5224">
+<meta name="robots" content="noindex,nofollow">
+<title>स्मार्ट सभासद ओळखपत्र · धर्मवीर आनंद दिघे साहेब महाराष्ट्र प्रवासी वाहतूक चालक कल्याणकारी मंडळ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#9e6e30; --red-d:#7a5224; --red-dd:#3d2612; --yellow:#ffc107; --yellow-l:#ffe082;
+  --cream:#fdf8f0; --ink:#2b1a14;
+  --green:#063a0f; --green-d:#041f07;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;overflow:hidden;overscroll-behavior:none;
+  font-family:'Baloo 2','Nirmala UI','Mangal',system-ui,sans-serif;font-size:16px;
+  -webkit-tap-highlight-color:transparent;background:var(--cream);color:var(--ink)}
+button{font-family:inherit}
+button:active,a:active{opacity:.85}
+p{margin:0}
+[hidden]{display:none!important}
+
+/* Mandal banner */
+.mandal-banner{display:block;width:100%;height:auto;max-height:80px;object-fit:cover;object-position:center;flex-shrink:0}
+@media(min-width:1024px){.mandal-banner{max-height:110px}}
+
+/* ═════════ SPLASH ═════════ */
+#splash{position:fixed;inset:0;overflow:hidden;z-index:100;transition:opacity 600ms ease;
+  background:radial-gradient(ellipse at 50% 30%,#7a5224 0%,#3d2612 55%,#1a0e06 100%)}
+.road{position:absolute;left:0;right:0;bottom:0;height:20%;background:linear-gradient(#2a2a2a,#151515);overflow:hidden}
+.road::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--yellow);opacity:.8}
+.road .lane{position:absolute;top:48%;left:0;width:200%;height:6px;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.75) 0 60px,transparent 60px 120px);animation:lane 1.2s linear infinite}
+@keyframes lane{to{transform:translateX(120px)}}
+.stripe{position:absolute;top:0;left:0;right:0;height:8px;z-index:10;background:linear-gradient(90deg,var(--green) 0 50%,var(--yellow) 50% 100%)}
+.phase{position:absolute;inset:0;z-index:20;transition:opacity 400ms ease}
+#loader{display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center;padding:0 20px 24vh}
+#logoWrap{position:relative;transform:scale(.2) translateY(40px);opacity:0;transition:transform 900ms cubic-bezier(.34,1.56,.64,1),opacity 500ms ease}
+#logoWrap.in{transform:none;opacity:1}
+#logoWrap .glow{position:absolute;inset:-10px;border-radius:50%;background:radial-gradient(circle,rgba(255,193,7,.35) 0%,transparent 70%);filter:blur(12px)}
+#logoWrap svg{position:relative;width:140px;height:140px}
+#loaderText{margin-top:24px;opacity:0;transform:translateY(16px);transition:opacity 700ms ease 400ms,transform 700ms ease 400ms}
+#loaderText.in{opacity:1;transform:none}
+#loaderText .l1{color:var(--yellow-l);font-weight:700;font-size:1rem;letter-spacing:.06em}
+#loaderText h1{margin:4px 0 0;color:#fff;font-weight:800;font-size:1.75rem;line-height:1.2;text-shadow:0 2px 16px rgba(0,0,0,.6)}
+#loaderText .big{margin-top:8px;font-size:1.5rem;font-weight:800;color:var(--yellow);text-shadow:0 0 30px rgba(255,193,7,.45)}
+#loaderText .en{color:rgba(255,255,255,.5);font-size:11px;margin-top:6px;letter-spacing:.18em;text-transform:uppercase}
+.dots{display:flex;gap:8px;margin-top:34px}
+.dots span{width:8px;height:8px;border-radius:50%;background:var(--yellow);opacity:.8;animation:bounce 1s infinite}
+.dots span:nth-child(2){animation-delay:150ms}.dots span:nth-child(3){animation-delay:300ms}
+@keyframes bounce{0%,100%{transform:translateY(-25%)}50%{transform:none}}
+#splashBus{position:absolute;bottom:3%;right:-175px;left:auto;height:80px;width:auto;z-index:15;transform:scaleX(-1);animation:drive 9s linear infinite;transition:opacity 400ms}
+@keyframes drive{to{right:110%}}
+
+#slides{display:flex;flex-direction:column;opacity:0;pointer-events:none}
+#slides.on{opacity:1;pointer-events:auto}
+.strip{padding:24px 20px 12px;display:flex;align-items:center;gap:12px}
+.strip svg{width:38px;height:38px;flex-shrink:0}
+.strip .t1{color:#fff;font-weight:800;font-size:14.5px;line-height:1.15}
+.strip .t2{color:var(--yellow-l);opacity:.8;font-size:11px;margin-top:2px}
+.slide-mid{flex:1;display:flex;align-items:center;justify-content:center;padding:0 24px 22vh}
+#leader{display:flex;flex-direction:column;align-items:center;text-align:center;width:100%;max-width:320px;
+  opacity:0;transform:translateY(20px) scale(.97);transition:opacity 400ms ease,transform 400ms ease}
+#leader.in{opacity:1;transform:none}
+.portrait{position:relative;margin-bottom:24px}
+.portrait .ring{position:absolute;inset:-12px;border-radius:50%;opacity:.7}
+.portrait .ring2{position:absolute;inset:-6px;border-radius:50%;background:#1f0505}
+.portrait .frame{position:relative;width:180px;height:180px;border-radius:50%;overflow:hidden;border:4px solid rgba(255,255,255,.85);box-shadow:0 25px 50px -12px rgba(0,0,0,.6)}
+.portrait .frame img{width:100%;height:100%;object-fit:cover;object-position:center}
+.portrait .fallback{width:100%;height:100%;display:none;align-items:center;justify-content:center;color:#fff;font-size:44px;font-weight:800}
+.portrait .aglow{position:absolute;inset:0;border-radius:50%;pointer-events:none}
+#leader h2{margin:0;color:#fff;font-weight:800;font-size:1.6rem;line-height:1.2;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+#leader .role{margin-top:8px;padding:6px 16px;border-radius:999px;font-size:13px;font-weight:800}
+#leader .sub{color:rgba(255,255,255,.6);font-size:12.5px;margin-top:8px}
+.progress{position:absolute;left:0;right:0;bottom:calc(20% + 18px);display:flex;flex-direction:column;align-items:center;gap:10px}
+.pdots{display:flex;align-items:center;gap:8px}
+.pdots i{display:block;width:8px;height:8px;border-radius:4px;background:rgba(255,255,255,.35);transition:width 300ms ease,background 300ms ease}
+.pdots i.on{width:32px;background:var(--yellow)}
+.progress small{color:rgba(255,255,255,.45);font-size:10.5px;letter-spacing:.2em}
+.brandline{position:absolute;bottom:0;left:0;right:0;z-index:30;padding:8px 0;text-align:center}
+.brandline p{color:rgba(255,255,255,.3);font-size:10px}
+#skip{position:absolute;top:20px;right:14px;z-index:40;background:rgba(255,255,255,.14);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 14px;font-size:12.5px;font-weight:700;cursor:pointer}
+
+/* tap-to-start gate (browsers only allow sound after a tap) */
+#gate{position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 24px 22vh;text-align:center;transition:opacity 400ms}
+#gate svg{width:120px;height:120px;filter:drop-shadow(0 6px 24px rgba(255,193,7,.35))}
+#gate h1{margin:18px 0 4px;color:#fff;font-size:1.6rem;line-height:1.2;font-weight:800}
+#gate p{color:var(--yellow-l);font-size:14px}
+#gate button{margin-top:26px;display:flex;align-items:center;gap:10px;background:var(--yellow);color:var(--red-dd);border:none;border-radius:999px;padding:12px 28px;font-size:18px;font-weight:800;cursor:pointer;animation:ring 1.8s infinite}
+#gate small{margin-top:12px;color:rgba(255,255,255,.55);font-size:12px}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(255,193,7,.55)}80%,100%{box-shadow:0 0 0 22px rgba(255,193,7,0)}}
+#splash.waiting #loader{opacity:0}
+#splash.waiting #skip{display:none}
+.speaking{position:absolute;top:22px;left:50%;transform:translateX(-50%);z-index:40;display:none;align-items:center;gap:6px;color:#fff;font-size:12px;background:rgba(0,0,0,.3);border-radius:20px;padding:3px 12px}
+.speaking.on{display:flex}
+.speaking i{display:inline-block;width:3px;height:10px;background:var(--yellow);border-radius:2px;animation:eq .8s ease-in-out infinite}
+.speaking i:nth-child(2){animation-delay:.15s}.speaking i:nth-child(3){animation-delay:.3s}
+@keyframes eq{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1.3)}}
+
+/* ═════════ APP SHELL ═════════ */
+#app{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--cream);overflow:hidden}
+.ebar{background:var(--red-d);display:flex;align-items:center;justify-content:space-between;gap:6px;padding:4px 10px;padding-top:calc(4px + env(safe-area-inset-top,0px));flex-shrink:0}
+.ebar .calls{display:flex;align-items:center;gap:6px}
+.ebar a{display:flex;align-items:center;gap:3px;background:rgba(255,255,255,.16);border-radius:8px;padding:3px 7px;text-decoration:none;color:#fff;font-size:12px;font-weight:800;white-space:nowrap}
+.ebar .div{width:1px;height:16px;background:rgba(255,255,255,.3)}
+.ebar .quick{display:flex;gap:4px}
+.ebar .quick button{width:26px;height:26px;border-radius:8px;border:none;font-size:14px;cursor:pointer;background:rgba(255,255,255,.14);padding:0}
+.topbar{background:linear-gradient(135deg,#6b4a1e 0%,#9e6e30 60%,#b8842e 100%);display:flex;align-items:center;gap:9px;padding:8px 12px;min-height:56px;flex-shrink:0;border-bottom:3px solid var(--yellow)}
+.topbar svg{width:36px;height:36px;flex-shrink:0}
+.topbar .tt{flex:1;min-width:0}
+.topbar h1{color:#fff;font-weight:800;font-size:16px;margin:0;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 1px 4px rgba(0,0,0,.3)}
+.topbar .st{color:rgba(255,255,255,.82);font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .lang{background:var(--yellow);color:var(--red-dd);border-radius:8px;font-size:12px;font-weight:800;padding:3px 9px;flex-shrink:0}
+.cols{flex:1;display:flex;overflow:hidden}
+main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+aside{display:none}
+.bnav{flex-shrink:0;background:#fff;border-top:1px solid #eee;box-shadow:0 -2px 12px rgba(0,0,0,.08);padding-bottom:env(safe-area-inset-bottom,8px)}
+.bnav .in{display:flex;align-items:center;justify-content:space-around;padding:4px 4px 0}
+.bnav button{display:flex;flex-direction:column;align-items:center;flex:1;padding:6px 4px 4px;background:none;border:none;cursor:pointer;min-width:0}
+.bnav .ic{font-size:20px;line-height:1}
+.bnav .lb{font-size:11px;margin-top:3px;font-weight:500;color:#888;white-space:nowrap}
+.bnav .on .lb{color:var(--red);font-weight:700}
+.bnav .bar{width:14px;height:2px;border-radius:1px;background:var(--red);margin-top:2px}
+.bnav .feat{flex:0 0 auto;margin-top:-20px;padding:0}
+.bnav .feat .ball{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;background:var(--red);border:3px solid var(--yellow);box-shadow:0 4px 16px rgba(198,40,40,.4)}
+.bnav .feat .lb{margin-top:2px;font-weight:600}
+
+@media(min-width:1024px){
+  #app{background:#f6efe8}
+  .ebar,.bnav{display:none}
+  .topbar{box-shadow:0 2px 8px rgba(0,0,0,.12);position:relative;z-index:2}
+  aside{display:block;flex-shrink:0;background:#fff;overflow-y:auto}
+  aside.left{width:224px;border-right:1px solid #e8d9c0}
+  aside.right{width:260px;border-left:1px solid #e8d9c0}
+}
+.snav{display:flex;flex-direction:column;height:100%;padding:12px 0}
+.snav .brand{padding:0 16px 12px;border-bottom:1px solid #f3d6d6;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.snav .brand svg,.snav .brand .msrtc-logo{width:36px;height:36px}
+.snav .brand b{display:block;font-size:14px;color:var(--red);line-height:1.2}
+.snav .brand small{font-size:11px;color:#b8860b}
+.snav nav{flex:1;padding:0 8px}
+.snav nav button{display:flex;align-items:center;gap:10px;width:100%;padding:8px 12px;border-radius:12px;border:none;cursor:pointer;text-align:left;margin-bottom:2px;font-size:14px;font-weight:500;background:transparent;color:#5a2a1a}
+.snav nav button:hover{background:#f7f2f2}
+.snav nav button.on{background:#fdecea;color:var(--red);font-weight:700}
+.snav .ft{padding:12px 16px 8px;border-top:1px solid #f0f0f0;font-size:10px;color:#bbb;text-align:center}
+.epanel{display:flex;flex-direction:column;height:100%;padding:16px 0}
+.epanel .hd{padding:0 14px 10px;border-bottom:1px solid #f3d6d6;margin-bottom:8px}
+.epanel .hd b{font-size:13.5px;color:var(--red)}
+.epanel .hd p{font-size:11px;color:#999;margin-top:2px}
+.epanel .list{flex:1;padding:0 10px}
+.epanel a{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:12px;margin-bottom:6px;text-decoration:none}
+.epanel a .e{font-size:18px}
+.epanel a .n p:first-child{font-size:11.5px;font-weight:600}
+.epanel a .n p:last-child{font-size:14.5px;font-weight:800}
+
+/* ═════════ HOME ═════════ */
+.hero{position:relative;height:330px;overflow:hidden;display:flex;flex-direction:column;
+  background:linear-gradient(170deg,#3d2612 0%,#7a5224 45%,#9e6e30 100%)}
+.hero .scene{position:absolute;inset:0;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,5,.25) 0%,rgba(10,20,5,.05) 45%,rgba(5,12,3,.55) 100%)}
+.hero>*:not(.scene){position:relative;z-index:1}
+.hero .top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;padding:12px 16px 0}
+.hero .logo{display:flex;align-items:center;gap:8px}
+.hero .logo svg,.hero .logo .msrtc-logo{width:34px;height:34px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+.hero .logo .a{font-size:9.5px;color:rgba(255,255,255,.75);font-weight:700;letter-spacing:.06em}
+.hero .logo .b{font-size:13px;color:var(--yellow);font-weight:800}
+.clock{text-align:right;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:5px 10px}
+.clock b{display:block;color:#fff;font-size:18px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.clock small{color:rgba(255,255,255,.7);font-size:10px;font-weight:600}
+.hero .mid{flex:1;display:flex;align-items:flex-start;padding:18px 18px 0}
+.hero .ttl{flex:1;min-width:0}
+.hero .k{display:inline-block;font-size:11px;font-weight:800;color:var(--red-dd);background:var(--yellow);border-radius:6px;padding:1px 8px;margin-bottom:8px;letter-spacing:.04em}
+.hero h2{font-size:28px;font-weight:800;color:#fff;margin:0 0 4px;line-height:1.12;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.hero .s{font-size:13px;color:rgba(255,255,255,.85);font-weight:600}
+.glass{display:none}
+@media(min-width:1024px){
+  .hero{height:360px}
+  .hero .top{padding:14px 22px 0}
+  .hero .mid{padding:26px 22px 0}
+  .hero h2{font-size:40px}
+  .hero .s{font-size:15px}
+  .glass{display:block;flex-shrink:0;width:300px;margin-left:24px;background:rgba(40,5,5,.35);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:18px 22px}
+  .glass .gt{font-size:11px;color:var(--yellow-l);font-weight:800;letter-spacing:.06em;margin-bottom:12px}
+  .glass .gg{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}
+  .glass b{display:block;font-size:26px;font-weight:800;color:var(--yellow);line-height:1}
+  .glass small{font-size:11px;color:rgba(255,255,255,.7);font-weight:600;line-height:1.3}
+  .mstats{display:none!important}
+}
+.mstats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--green-d);color:#fff;text-align:center}
+.mstats div{padding:10px 2px;border-right:1px solid rgba(255,255,255,.1)}
+.mstats div:last-child{border:0}
+.mstats b{display:block;font-size:17px;font-weight:800;color:var(--yellow);line-height:1.1}
+.mstats small{font-size:10px;color:rgba(255,255,255,.65);font-weight:600}
+.note-demo{font-size:10px;color:#b09080;text-align:right;padding:3px 12px 0;background:var(--cream)}
+
+.ticker{background:linear-gradient(90deg,#1a0e06,#3d2612);display:flex;align-items:center;height:36px;overflow:hidden;cursor:pointer}
+.ticker .live{display:flex;align-items:center;gap:6px;padding:0 14px;height:100%;background:var(--yellow);flex-shrink:0}
+.ticker .live i{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 1s infinite}
+.ticker .live span{font-size:11px;color:var(--red-dd);font-weight:800}
+.ticker .run{flex:1;overflow:hidden}
+.ticker .track{display:flex;white-space:nowrap;animation:ticker 36s linear infinite}
+.ticker .track span{font-size:12.5px;color:rgba(255,255,255,.92);font-weight:600;padding-right:36px}
+.ticker .track em{color:var(--yellow);padding:0 12px;font-style:normal;opacity:.6}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.sec{padding:18px 16px 4px}
+.sec-h{font-weight:800;font-size:17px;color:var(--ink);margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.sec-h::before{content:"";width:4px;height:18px;border-radius:2px;background:linear-gradient(var(--red),var(--yellow))}
+
+.vcard{border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 4px 18px rgba(0,0,0,.08);border:1.5px solid #f3d6d6}
+.vcard .vh{display:flex;align-items:center;gap:10px;padding:12px 14px;color:#fff}
+.vcard .vh.ok{background:linear-gradient(135deg,#1b7a3e,#2e9d52)}
+.vcard .vh.bad{background:linear-gradient(135deg,#8e1414,#c62828)}
+.vcard .vh.warn{background:linear-gradient(135deg,#a86a00,#d48a00)}
+.vcard .vh .mk{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;flex-shrink:0}
+.vcard .vh b{display:block;font-size:16.5px;line-height:1.2}
+.vcard .vh small{font-size:12px;opacity:.9}
+.vcard .vb{display:flex;gap:12px;padding:12px 14px;align-items:center}
+.vcard .ph{width:62px;height:76px;border-radius:10px;object-fit:cover;flex-shrink:0;background:#fdecea;border:2px solid #f3d6d6;display:flex;align-items:center;justify-content:center;font-size:30px}
+.vcard .nm{font-weight:800;font-size:15.5px;color:#222;line-height:1.25}
+.vcard .rows{margin-top:3px;font-size:12.5px;color:#666;line-height:1.6}
+.vcard .rows b{color:var(--ink);font-weight:700}
+.vcard .vf{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 14px;background:#fff7f0;border-top:1px solid #f6e0d0;font-size:12.5px}
+.vcard .vf a{color:var(--red);font-weight:800;text-decoration:none;white-space:nowrap}
+
+/* driver profile */
+.prof{background:#fff;border-radius:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);border:1.5px solid #f3d6d6;overflow:hidden}
+.prof .ph-head{display:flex;gap:14px;align-items:center;padding:16px;background:linear-gradient(135deg,#fff7f0,#fdecea)}
+.prof .big-ph{width:92px;height:114px;border-radius:14px;object-fit:cover;flex-shrink:0;border:3px solid #fff;box-shadow:0 4px 14px rgba(0,0,0,.15);background:#fdecea}
+.prof .pn{font-size:21px;font-weight:800;color:#111;line-height:1.2}
+.prof .pe{font-size:12.5px;color:#888;font-weight:600}
+.prof .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.prof .tag{font-size:11.5px;font-weight:800;border-radius:999px;padding:2px 10px}
+.pgrp{padding:14px 16px;border-top:1px solid #f6e3e3}
+.pgrp h3{margin:0 0 8px;font-size:14.5px;color:var(--red)}
+.kv{display:grid;grid-template-columns:128px 1fr;gap:6px 12px;font-size:13.5px;margin:0}
+.kv dt{color:#8a7b74;font-weight:600}
+.kv dd{margin:0;color:#222;font-weight:700;word-break:break-word}
+@media(min-width:1024px){.pcols{display:grid;grid-template-columns:1fr 1fr}.pcols .pgrp:nth-child(2){border-left:1px solid #f6e3e3}}
+.docs{list-style:none;margin:0;padding:0}
+.docs li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed #f0dede;font-size:13.5px}
+.docs li:last-child{border:0}
+.docs .di{width:32px;height:32px;border-radius:9px;background:#fdecea;color:var(--red);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+.docs b{display:block;color:#222}
+.docs small{color:#888;font-size:11.5px}
+.docs .ok{margin-left:auto;color:#2e7d32;font-weight:800;font-size:12px;white-space:nowrap}
+.qrref{display:flex;gap:14px;align-items:center}
+.qrref .qr{width:110px;height:110px;flex-shrink:0;background:#fff;border:1.5px solid #f3d6d6;border-radius:12px;padding:7px}
+.qrref .qr svg{width:100%;height:100%;display:block}
+.demo-pick{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.demo-pick a{font-size:11.5px;font-weight:700;color:var(--red);background:#fff;border:1px solid #f3d6d6;border-radius:999px;padding:2px 10px;text-decoration:none}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:1024px){.grid{grid-template-columns:repeat(4,1fr);gap:12px}}
+.svc{display:flex;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:12px 10px;box-shadow:0 2px 10px rgba(0,0,0,.06);cursor:pointer;text-align:left;overflow:hidden;min-width:0;border:1.5px solid #f6e3e3}
+.svc .ic{width:42px;height:42px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:21px}
+.svc .tx{flex:1;min-width:0}
+.svc .tx p:first-child{font-weight:800;font-size:14px;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.svc .tx p:last-child{font-size:12px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.fleet{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.fleet::-webkit-scrollbar{display:none}
+.bus{flex:0 0 150px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);cursor:pointer;border:none;padding:0;text-align:left}
+.bus .art{height:72px;display:flex;align-items:center;justify-content:center}
+.bus .art svg{width:120px}
+.bus .bt{padding:8px 11px 10px}
+.bus .bt b{display:block;font-size:14px;color:#111}
+.bus .bt small{font-size:11.5px;color:#888}
+
+.conc{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:620px){.conc{grid-template-columns:1fr 1fr}}
+.cc{display:flex;gap:12px;align-items:center;background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 2px 10px rgba(0,0,0,.06);border-left:5px solid var(--red)}
+.cc .pct{flex-shrink:0;width:62px;height:62px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:800;line-height:1}
+.cc .pct b{font-size:20px}
+.cc .pct small{font-size:10px;margin-top:2px;opacity:.9}
+.cc p:first-of-type{font-weight:800;font-size:14.5px;color:#111}
+.cc p:last-of-type{font-size:12px;color:#777;line-height:1.45}
+
+.schemes{display:flex;flex-wrap:wrap;gap:8px}
+.schemes span{background:#fff;border:1.5px solid #ffd54f;color:#7a4a00;border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:700}
+
+.ai{width:100%;background:linear-gradient(145deg,#1a0e06,#4a3010,#7a5224);border-radius:20px;padding:18px;border:none;cursor:pointer;text-align:left;box-shadow:0 6px 24px rgba(122,82,36,.35)}
+.ai .h{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.ai .av{width:52px;height:52px;border-radius:16px;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.ai .h b{display:block;font-size:17px;color:#fff}
+.ai .h small{font-size:12px;color:rgba(255,255,255,.7)}
+.ai .chat{background:rgba(0,0,0,.22);border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.ai .me{display:flex;justify-content:flex-end;margin-bottom:8px}
+.ai .me span{background:rgba(255,255,255,.16);color:#fff;border-radius:12px 12px 4px 12px;padding:6px 10px;font-size:12.5px}
+.ai .bot{display:flex;gap:6px;align-items:flex-start}
+.ai .bot span:last-child{background:rgba(255,193,7,.16);color:#fff;border-radius:4px 12px 12px 12px;padding:6px 10px;font-size:12.5px;line-height:1.5}
+.ai .cta{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--yellow);border-radius:12px;padding:10px;color:var(--red-dd);font-weight:800;font-size:14px}
+
+.alerts-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.alerts-h span{font-size:12.5px;color:var(--red);font-weight:800;cursor:pointer}
+.al{display:flex;gap:10px;align-items:flex-start;border-radius:14px;padding:11px 14px;margin-bottom:8px}
+.al .em{font-size:20px;flex-shrink:0}
+.al p:first-child{font-size:13px;color:#333;line-height:1.5;font-weight:500}
+.al p:last-child{font-size:11px;color:#aaa;font-weight:600}
+
+.pat{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:520px){.pat{grid-template-columns:repeat(3,1fr)}}
+.pat>div{background:#fff;border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 10px rgba(0,0,0,.05);overflow:hidden}
+.pat img,.pat .fb{width:48px;height:48px;border-radius:12px;object-fit:cover;object-position:center 30%;flex-shrink:0}
+.pat .fb{display:none;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px}
+.pat b{display:block;font-size:13.5px;color:#111;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pat small{display:block;font-size:11px;font-weight:700;line-height:1.3}
+
+.slogan{margin:18px 16px 0;border-radius:16px;padding:16px;display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#7a5224,#3d2612);color:#fff}
+.slogan svg{width:70px;flex-shrink:0}.slogan .msrtc-logo{width:80px;height:80px;filter:drop-shadow(0 2px 10px rgba(0,0,0,.25))}
+.slogan b{display:block;font-size:19px;color:var(--yellow)}
+.slogan small{font-size:12px;color:rgba(255,255,255,.7);line-height:1.5}
+.powered{text-align:center;font-size:11px;color:#b8a598;padding:16px 0 24px}
+
+.fab{position:fixed;right:16px;bottom:calc(65px + env(safe-area-inset-bottom,0px) + 12px);z-index:50}
+@media(min-width:1024px){.fab{right:276px;bottom:24px}}
+.fab button{width:58px;height:58px;border-radius:50%;border:3px solid var(--yellow);cursor:pointer;font-size:26px;background:linear-gradient(145deg,#8e1414,#c62828);box-shadow:0 6px 20px rgba(142,20,20,.45)}
+.fab .pr{position:absolute;inset:-12px;border-radius:50%;background:rgba(198,40,40,.18);animation:fabp 2s ease-out infinite;pointer-events:none;display:none}
+.fab.pulse .pr{display:block}
+@keyframes fabp{0%{transform:scale(1);opacity:.8}70%,100%{transform:scale(1.6);opacity:0}}
+.bubble{position:absolute;bottom:76px;right:0;background:#fff;border-radius:18px;padding:10px 16px;min-width:180px;border:2px solid var(--red);box-shadow:0 8px 32px rgba(0,0,0,.16);opacity:0;transform:translateY(10px) scale(.95);transition:opacity 280ms,transform 280ms;pointer-events:none}
+.bubble.on{opacity:1;transform:none}
+.bubble b{display:block;font-size:14.5px;color:var(--red)}
+.bubble small{font-size:12px;color:#888;font-weight:600}
+#toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%) translateY(20px);background:rgba(58,8,8,.94);color:#fff;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:600;opacity:0;transition:.25s;z-index:200;pointer-events:none;white-space:nowrap}
+#toast.on{opacity:1;transform:translateX(-50%)}
+/* Official ST logo */
+img.msrtc-logo{display:block;flex-shrink:0;object-fit:contain}
+#gate .gate-banner{width:min(380px,92%);border-radius:14px;margin:0 auto 18px;display:block;box-shadow:0 6px 30px rgba(0,0,0,.4)}
+#logoWrap .msrtc-logo{width:190px;height:190px;position:relative;filter:drop-shadow(0 0 24px rgba(255,193,7,.65));border:3px solid rgba(255,193,7,.45);border-radius:50%}
+.strip .msrtc-logo{width:44px;height:44px;border-radius:50%}
+.topbar .msrtc-logo{width:38px;height:38px}
+.snav .brand .msrtc-logo{width:38px;height:38px}
+</style>
+</head>
+<body>
+
+<!-- Reusable SVG symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+
+
+
+    <!-- Maharashtra black-yellow auto rickshaw (side view) -->
+    <symbol id="auto" viewBox="0 0 160 70">
+      <!-- Rear/passenger body -->
+      <rect x="56" y="20" width="94" height="36" rx="5" fill="#1a1a1a"/>
+      <rect x="60" y="24" width="86" height="28" rx="3" fill="#ffc107"/>
+      <!-- Roof/canopy -->
+      <path d="M56 20 Q56 8 70 8 H140 Q149 8 149 16 V20 Z" fill="#1a1a1a"/>
+      <!-- Front hood/engine section -->
+      <path d="M14 34 Q12 26 20 22 L56 22 V56 H16 Q13 50 14 44 Z" fill="#1a1a1a"/>
+      <rect x="18" y="26" width="36" height="3" rx="1" fill="#ffc107"/>
+      <!-- Windshield -->
+      <rect x="58" y="11" width="20" height="18" rx="2" fill="#b8dcf0" opacity=".88"/>
+      <!-- Passenger windows -->
+      <rect x="84" y="26" width="22" height="14" rx="2" fill="#b8dcf0" opacity=".75"/>
+      <rect x="112" y="26" width="22" height="14" rx="2" fill="#b8dcf0" opacity=".75"/>
+      <!-- Black stripe across yellow -->
+      <rect x="60" y="36" width="86" height="3" fill="#1a1a1a"/>
+      <!-- Front wheel -->
+      <circle cx="30" cy="57" r="11" fill="#111"/>
+      <circle cx="30" cy="57" r="5.5" fill="#555"/>
+      <circle cx="30" cy="57" r="2" fill="#888"/>
+      <!-- Rear wheels (two, slightly offset) -->
+      <circle cx="121" cy="57" r="11" fill="#111"/>
+      <circle cx="121" cy="57" r="5.5" fill="#555"/>
+      <circle cx="121" cy="57" r="2" fill="#888"/>
+      <circle cx="135" cy="57" r="11" fill="#111"/>
+      <circle cx="135" cy="57" r="5.5" fill="#555"/>
+      <circle cx="135" cy="57" r="2" fill="#888"/>
+      <!-- Headlight -->
+      <ellipse cx="17" cy="36" rx="4" ry="3" fill="#fffde7" opacity=".9"/>
+      <!-- Number plate -->
+      <rect x="108" y="50" width="26" height="8" rx="1" fill="#fff" opacity=".85"/>
+      <text x="121" y="57" text-anchor="middle" font-size="5" fill="#111" font-family="sans-serif">MH 04</text>
+      <!-- Green meter flag (Maharashtra) -->
+      <rect x="60" y="8" width="6" height="10" rx="1" fill="#2e7d32" opacity=".8"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ═════════ SPLASH ═════════ -->
+<div id="splash" class="waiting">
+  <div class="stripe"></div>
+  <div class="speaking" id="speaking"><i></i><i></i><i></i><span>🔊</span></div>
+  <div id="gate">
+    <img src="msrtc-assets/mandal-banner.png" class="gate-banner" alt="DADSMPVCKM">
+    <h1>धर्मवीर आनंद दिघे साहेब महाराष्ट्र प्रवासी वाहतूक चालक कल्याणकारी मंडळ</h1>
+    <p>स्मार्ट सभासद ओळखपत्र · पडताळणी</p>
+    <button type="button" id="startBtn">▶ सुरू करा</button>
+    <small>🔊 आवाजासह पाहण्यासाठी टॅप करा</small>
+  </div>
+  <div class="road"><div class="lane"></div></div>
+  <img id="splashBus" src="msrtc-assets/auto.png" alt="auto">
+  <button id="skip" type="button">वगळा ›</button>
+
+  <div id="loader" class="phase">
+    <div id="logoWrap"><div class="glow"></div><img src="msrtc-assets/mandal-logo.png" class="msrtc-logo" alt="MPVDWB" style="border-radius:50%"></div>
+    <div id="loaderText">
+      <p class="l1">महाराष्ट्र शासन</p>
+      <h1>धर्मवीर आनंद दिघे साहेब महाराष्ट्र प्रवासी वाहतूक चालक कल्याणकारी मंडळ</h1>
+      <div class="big">स्मार्ट सभासद ओळखपत्र</div>
+      <p class="en">MPVDWB · Smart ID</p>
+    </div>
+    <div class="dots"><span></span><span></span><span></span></div>
+  </div>
+
+  <div id="slides" class="phase">
+    <div class="strip">
+      <img src="msrtc-assets/mandal-logo.png" class="msrtc-logo" alt="MPVDWB">
+      <div>
+        <p class="t1">आनंद दिघे कल्याणकारी मंडळ</p>
+        <p class="t2">चालकांच्या सेवेसाठी · स्मार्ट सभासद ओळखपत्र</p>
+      </div>
+    </div>
+    <div class="slide-mid">
+      <div id="leader">
+        <div class="portrait">
+          <div class="ring" id="lRing"></div>
+          <div class="ring2"></div>
+          <div class="frame"><img id="lImg" alt=""><div class="fallback" id="lFb"></div></div>
+          <div class="aglow" id="lGlow"></div>
+        </div>
+        <h2 id="lName"></h2>
+        <div class="role" id="lRole"></div>
+        <p class="sub" id="lSub"></p>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="pdots" id="pdots"></div>
+      <small>MPVDWB · महाराष्ट्र</small>
+    </div>
+  </div>
+
+  <div class="brandline"><p>Powered by Micraft Solutions Pvt. Ltd.</p></div>
+</div>
+
+<!-- ═════════ APP ═════════ -->
+<div id="app" hidden>
+  <img src="msrtc-assets/mandal-banner.png" class="mandal-banner" alt="धर्मवीर आनंद दिघे साहेब महाराष्ट्र प्रवासी वाहतूक चालक कल्याणकारी मंडळ">
+  <div class="ebar">
+    <div class="calls">
+      <a href="tel:112">🆘<span>112</span></a>
+      <a href="tel:100">🚔<span>100</span></a>
+      <a href="tel:108">🚑<span>108</span></a>
+      <a href="tel:1091">👩<span>1091</span></a>
+    </div>
+    <div class="div"></div>
+    <div class="quick">
+      <button type="button" data-soon="मंडळाविषयी">📖</button>
+      <button type="button" data-soon="तक्रार निवारण">📝</button>
+      <button type="button" data-soon="अभिप्राय">💬</button>
+    </div>
+  </div>
+
+  <div class="topbar">
+    <img src="msrtc-assets/mandal-logo.png" class="msrtc-logo" alt="MPVDWB">
+    <div class="tt">
+      <h1>स्मार्ट सभासद ओळखपत्र</h1>
+      <p class="st">आनंद दिघे कल्याणकारी मंडळ</p>
+    </div>
+    <span class="lang">मराठी</span>
+  </div>
+
+  <div class="cols">
+    <aside class="left">
+      <div class="snav">
+        <div class="brand"><img src="msrtc-assets/mandal-logo.png" class="msrtc-logo" alt="MPVDWB"><div><b>आनंद दिघे कल्याणकारी मंडळ</b><small>स्मार्ट ओळखपत्र</small></div></div>
+        <nav>
+          <button class="on">🏠 <span>मुख्यपृष्ठ</span></button>
+          <button data-soon="कार्ड पडताळणी">🪪 <span>कार्ड पडताळणी</span></button>
+          <button data-soon="सदस्यत्व नूतनीकरण">🔄 <span>सदस्यत्व नूतनीकरण</span></button>
+          <button data-soon="सन्मान निधी">💰 <span>सन्मान निधी योजना</span></button>
+          <button data-soon="अपघात विमा">🛡️ <span>अपघात विमा</span></button>
+          <button data-soon="मुदत जीवन विमा">📋 <span>मुदत जीवन विमा</span></button>
+          <button data-soon="शिष्यवृत्ती योजना">🎓 <span>शिष्यवृत्ती योजना</span></button>
+          <button data-soon="पार्सल सेवा">📦 <span>पार्सल सेवा</span></button>
+          <button data-soon="तक्रार निवारण">📝 <span>तक्रार निवारण</span></button>
+          <button data-soon="मंडळ सहाय्यक">🤖 <span>मंडळ सहाय्यक (AI)</span></button>
+        </nav>
+        <div class="ft">Micraft Solutions Pvt. Ltd.</div>
+      </div>
+    </aside>
+
+    <main id="main"></main>
+
+    <aside class="right">
+      <div class="epanel">
+        <div class="hd"><b>🚨 आपत्कालीन संपर्क</b><p>कॉल करण्यासाठी टॅप करा</p></div>
+        <div class="list">
+          <a href="tel:112" style="background:#fdecea;color:#8e1414"><span class="e">🆘</span><div class="n"><p>आपत्कालीन क्रमांक</p><p>112</p></div></a>
+          <a href="tel:100" style="background:#fff0f0;color:#8e1414"><span class="e">🚔</span><div class="n"><p>पोलीस</p><p>100</p></div></a>
+          <a href="tel:108" style="background:#fff8e1;color:#9a6700"><span class="e">🚑</span><div class="n"><p>रुग्णवाहिका</p><p>108</p></div></a>
+          <a href="tel:101" style="background:#fff0e6;color:#c43e00"><span class="e">🚒</span><div class="n"><p>अग्निशमन</p><p>101</p></div></a>
+          <a href="tel:1091" style="background:#fce8e8;color:#8e1414"><span class="e">👩</span><div class="n"><p>महिला हेल्पलाइन</p><p>1091</p></div></a>
+          <a href="tel:18000000000" style="background:#fff8e1;color:#9a6700"><span class="e">🚌</span><div class="n"><p>मंडळ हेल्पलाइन (प्रात्यक्षिक)</p><p>1800-000-0000</p></div></a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <nav class="bnav">
+    <div class="in">
+      <button class="on"><span class="ic">🏠</span><span class="lb">मुख्यपृष्ठ</span><span class="bar"></span></button>
+      <button data-soon="तिकीट"><span class="ic">🎫</span><span class="lb">नूतनीकरण</span></button>
+      <button class="feat" data-soon="मंडळ सहाय्यक"><span class="ball">🤖</span><span class="lb">सहाय्यक</span></button>
+      <button data-soon="बस ट्रॅकिंग"><span class="ic">📍</span><span class="lb">योजना</span></button>
+      <button data-soon="मेनू"><span class="ic">☰</span><span class="lb">मेनू</span></button>
+    </div>
+  </nav>
+
+  <div class="fab" id="fab">
+    <div class="bubble" id="bubble"><b>मदत हवी आहे?</b><small>मंडळ सहाय्यकाला विचारा 👆</small></div>
+    <div class="pr"></div>
+    <button type="button" data-soon="मंडळ सहाय्यक" aria-label="मंडळ सहाय्यक">🤖</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="data.js?v=3"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ───────── Leaders in the loader — photos go in msrtc-assets/ ───────── */
+  var LEADERS = [
+    { img: "msrtc-assets/digheji.jpg",    initials: "आ.दि.", accent: "#ff8f00",
+      name: "धर्मवीर आनंद दिघे साहेब", role: "🙏 प्रेरणास्थान", sub: "जनसेवेचे प्रतीक",
+      say: "धर्मवीर आनंद दिघे साहेब", latin: "Dharmaveer Anand Dighe Saheb", audio: "msrtc-assets/voice-anand-dighe.mp3" },
+    { img: "msrtc-assets/shinde-portrait.jpg",  initials: "ए.शिं.", accent: "#ffc107",
+      name: "श्री. एकनाथ शिंदे", role: "माननीय उपमुख्यमंत्री", sub: "उपमुख्यमंत्री, महाराष्ट्र राज्य",
+      say: "माननीय उपमुख्यमंत्री, श्री एकनाथ शिंदे साहेब", latin: "Maananeeya Upa Mukhya Mantri, Shree Eknath Shinde Saheb", audio: "msrtc-assets/voice-eknath-shinde.mp3" },
+    { img: "msrtc-assets/sarnaik-portrait.jpg", initials: "प्र.स.", accent: "#e53935",
+      name: "श्री. प्रताप सरनाईक", role: "माननीय परिवहन मंत्री व अध्यक्ष", sub: "परिवहन मंत्री व अध्यक्ष, आनंद दिघे कल्याणकारी मंडळ",
+      say: "माननीय परिवहन मंत्री व आनंद दिघे कल्याणकारी मंडळाचे अध्यक्ष, श्री प्रताप सरनाईक साहेब यांच्या संकल्पनेतून", latin: "Maananeeya Parivahan Mantri va S T Mahamandalache Adhyaksha, Shree Pratap Sarnaik Saheb Yanchya Sankalpanetun", audio: "msrtc-assets/voice-pratap-sarnaik.mp3" }
+  ];
+  var WELCOME = "धर्मवीर आनंद दिघे साहेब महाराष्ट्र प्रवासी वाहतूक चालक कल्याणकारी मंडळमध्ये आपले स्वागत आहे";
+  var WELCOME_LATIN = "Dharmaveer Anand Dighe Saheb Maharashtra Pravasi Vahatuk Chalak Kalyankari Mandal";
+  var LOADER_MS = 3200, SLIDE_MS = 3400, FADE_MS = 400;
+
+  /* ───────── Female Marathi voice ─────────
+     1. If a recorded clip exists (msrtc-assets/voice-*.mp3) it is played — best quality.
+     2. Otherwise the browser's speech engine is used, preferring a female Marathi voice
+        (Edge: "Microsoft Aarohi – Marathi"), then a female Hindi voice, which reads
+        Devanagari with an Indian accent (Windows "Microsoft Swara", Chrome "Google हिन्दी"). */
+  var MALE = /hemant|madhur|manohar|prabhat|ravi|male\b|पुरुष/i;
+  var FEMALE = /aarohi|swara|kalpana|heera|female|google|lekha|neerja|ananya|स्त्री/i;
+  /* a voice list entry is only used if it is not a known male voice */
+  var voice = null;
+  function pickVoice() {
+    if (!("speechSynthesis" in window)) return;
+    var all = speechSynthesis.getVoices();
+    function best(prefix) {
+      var list = all.filter(function (v) { return v.lang.replace("_", "-").toLowerCase().indexOf(prefix) === 0 && !MALE.test(v.name); });
+      return list.filter(function (v) { return FEMALE.test(v.name); })[0] || list[0] || null;
+    }
+    voice = best("mr") || best("hi") || best("en-in") || null;
+  }
+  if ("speechSynthesis" in window) {
+    pickVoice();
+    speechSynthesis.addEventListener("voiceschanged", pickVoice);
+  }
+  var clip = null;
+  function indicator(on) { $("speaking").classList.toggle("on", on); }
+  function tts(text, latin, hooks) {
+    if (!("speechSynthesis" in window)) { hooks.done(); return; }
+    speechSynthesis.cancel();
+    /* an English (India) voice cannot read Devanagari, so give it the romanised name */
+    var useLatin = voice && /^en/i.test(voice.lang) && latin;
+    var u = new SpeechSynthesisUtterance(useLatin ? latin : text);
+    u.lang = voice ? voice.lang : "mr-IN";
+    if (voice) u.voice = voice;
+    u.rate = 0.88;
+    u.pitch = 1.15;
+    u.onstart = function () { indicator(true); hooks.started(); };
+    u.onend = u.onerror = function () { indicator(false); hooks.done(); };
+    speechSynthesis.speak(u);
+  }
+  /* Speak one line. hooks.started() fires when sound actually begins,
+     hooks.done() fires once, only after the whole line has been spoken (or could not play). */
+  function announce(text, latin, audioSrc, hooks) {
+    var called = false;
+    var h = {
+      started: function () { if (hooks) hooks.started(); },
+      done: function () { if (!called) { called = true; if (hooks) hooks.done(); } }
+    };
+    if (clip) { clip.pause(); clip = null; }
+    if (!audioSrc) { tts(text, latin, h); return; }
+    var a = new Audio(audioSrc);
+    clip = a;
+    a.onplaying = function () { indicator(true); h.started(); };
+    a.onended = function () { indicator(false); h.done(); };
+    a.onerror = function () { if (clip === a) tts(text, latin, h); else h.done(); };
+    a.play().catch(function (err) {
+      /* missing file → onerror handles it; autoplay refusal → fall back to the speech engine */
+      if (err && err.name === "NotAllowedError" && clip === a) tts(text, latin, h);
+    });
+  }
+  /* Recorded Marathi clips (mr-IN-AarohiNeural) — preloaded on the first tap. */
+  var CLIP_FILES = ["msrtc-assets/voice-welcome.mp3"].concat(LEADERS.map(function (l) { return l.audio; }));
+  function preloadClips() {
+    CLIP_FILES.forEach(function (src) { var a = new Audio(); a.preload = "auto"; a.src = src; });
+  }
+  function hush() {
+    if (clip) { clip.pause(); clip = null; }
+    if ("speechSynthesis" in window) speechSynthesis.cancel();
+    indicator(false);
+  }
+
+  var DEV = "०१२३४५६७८९";
+  function mr(n) { return String(n).replace(/\d/g, function (d) { return DEV[d]; }); }
+  function $(id) { return document.getElementById(id); }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  /* ───────── Splash ───────── */
+  var timers = [];
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  var pd = $("pdots");
+  LEADERS.forEach(function () { pd.appendChild(document.createElement("i")); });
+
+  function showLeader(i) {
+    var l = LEADERS[i], img = $("lImg"), fb = $("lFb");
+    img.style.display = ""; fb.style.display = "none";
+    img.onerror = function () {
+      img.style.display = "none";
+      fb.textContent = l.initials;
+      fb.style.background = "linear-gradient(135deg,#c62828,#4a0a0a)";
+      fb.style.display = "flex";
+    };
+    img.src = l.img; img.alt = l.name;
+    $("lRing").style.background = "conic-gradient(" + l.accent + ",#fff," + l.accent + ",#fff," + l.accent + ")";
+    $("lGlow").style.boxShadow = "0 0 40px 8px " + l.accent + "66";
+    $("lName").textContent = l.name;
+    var r = $("lRole");
+    r.textContent = l.role;
+    r.style.background = l.accent;
+    r.style.color = l.accent === "#ffc107" ? "#4a0a0a" : "#fff";
+    $("lSub").textContent = l.sub;
+    Array.prototype.forEach.call(pd.children, function (d, k) { d.className = k === i ? "on" : ""; });
+  }
+
+  /* Hooks for announce(): the next screen appears only after the line has been spoken in full,
+     then a short pause, and never before `minMs` on screen.
+     Safety nets only for broken audio: if sound never starts within NO_START_MS the show
+     continues silently; if a clip stalls mid-way it continues after STALL_MS. */
+  var PAUSE_AFTER_VOICE = 800, NO_START_MS = 6000, STALL_MS = 30000;
+  function whenSpoken(minMs, next) {
+    var start = Date.now(), fired = false, began = false;
+    function go() {
+      if (fired) return;
+      fired = true;
+      later(next, Math.max(PAUSE_AFTER_VOICE, minMs - (Date.now() - start)));
+    }
+    later(function () { if (!began) go(); }, NO_START_MS);
+    return {
+      started: function () { if (!began) { began = true; later(go, STALL_MS); } },
+      done: go
+    };
+  }
+
+  var finished = false;
+  function finishSplash() {
+    if (finished) return;
+    finished = true;
+    timers.forEach(clearTimeout);
+    hush();
+    var s = $("splash");
+    s.style.opacity = 0;
+    setTimeout(function () { s.hidden = true; startApp(); }, 600);
+  }
+
+  function runSplash() {
+    $("gate").style.opacity = 0;
+    setTimeout(function () { $("gate").hidden = true; }, 400);
+    $("splash").classList.remove("waiting");
+    preloadClips();
+    later(function () { $("logoWrap").classList.add("in"); $("loaderText").classList.add("in"); }, 80);
+
+    function slide(idx) {
+      showLeader(idx);
+      $("leader").classList.add("in");
+      var l = LEADERS[idx];
+      var last = idx >= LEADERS.length - 1;
+      announce(l.say, l.latin, l.audio, whenSpoken(SLIDE_MS, function () {
+        if (last) { finishSplash(); return; }
+        $("leader").classList.remove("in");
+        later(function () { slide(idx + 1); }, FADE_MS);
+      }));
+    }
+
+    announce(WELCOME, WELCOME_LATIN, "msrtc-assets/voice-welcome.mp3", whenSpoken(LOADER_MS, function () {
+      $("loader").style.opacity = 0;
+      $("slides").classList.add("on");
+      $("splash").classList.add("sl");
+      slide(0);
+    }));
+  }
+  $("startBtn").addEventListener("click", runSplash);
+  $("skip").addEventListener("click", finishSplash);
+
+  /* ───────── Card lookup (QR opens msrtc.html?t=CODE) ───────── */
+  function findHolder(token) {
+    if (!token) return null;
+    token = token.toUpperCase();
+    var list = [];
+    try {
+      var raw = localStorage.getItem("mpvdwb_proto_v1");
+      if (raw) list = JSON.parse(raw).holders || [];
+    } catch (e) { /* storage blocked */ }
+    var seeds = typeof SEED_HOLDERS !== "undefined" ? SEED_HOLDERS : [];
+    if (!list.length) list = seeds;
+    function byTok(arr) {
+      for (var i = 0; i < arr.length; i++) if (String(arr[i].token).toUpperCase() === token) return arr[i];
+      return null;
+    }
+    var h = byTok(list);
+    if (!h) return null;
+    /* saved demo data may predate the Marathi fields — fill them from data.js */
+    var seed = byTok(seeds);
+    if (!seed) return h;
+    var merged = {}, k;
+    for (k in seed) merged[k] = seed[k];
+    for (k in h) merged[k] = h[k];
+    return merged;
+  }
+  function statusOf(h) {
+    if (!h) return "notfound";
+    if (h.status === "suspended" || h.status === "revoked") return h.status;
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    return new Date(h.validTo + "T00:00:00") < today ? "expired" : "active";
+  }
+  var MONTHS = ["जाने.", "फेब्रु.", "मार्च", "एप्रि.", "मे", "जून", "जुलै", "ऑग.", "सप्टें.", "ऑक्टो.", "नोव्हें.", "डिसें."];
+  function mrDate(iso) {
+    if (!iso) return "-";
+    var p = iso.split("-");
+    return mr(parseInt(p[2], 10)) + " " + MONTHS[parseInt(p[1], 10) - 1] + " " + mr(p[0]);
+  }
+  var VEHICLE_MR = {
+    "Auto Rickshaw": "ऑटो रिक्षा", "Taxi (Kaali-Peeli)": "टॅक्सी", "App-based Cab": "ॲप-आधारित कॅब",
+    "School Bus": "स्कूल बस", "Tourist Vehicle": "पर्यटक वाहन", "Goods Carrier (LCV)": "मालवाहू वाहन",
+    "Private Bus": "बस"
+  };
+  var SCHEME_MR = {
+    "Accident insurance cover": "अपघात विमा संरक्षण", "Term life cover": "मुदत जीवन विमा",
+    "Children's scholarship": "मुलांसाठी शिष्यवृत्ती", "Medical assistance": "वैद्यकीय सहाय्य",
+    "Retirement benefit fund": "निवृत्ती लाभ निधी"
+  };
+
+  var DEFAULT_TOKEN = "MPV8FQ2M4XD";   /* shown when the page is opened without ?t= (rickshaw driver Ramesh Pawar) */
+  var GENDER_MR = { Male: "पुरुष", Female: "स्त्री", Other: "इतर" };
+  var CLASS_MR = {
+    "LMV - Transport": "हलके मोटार वाहन – परिवहन", "HMV - Passenger (Transport)": "अवजड प्रवासी वाहन – परिवहन",
+    "HGMV - Transport": "अवजड मालवाहू वाहन – परिवहन", "MCWG + LMV-TR": "दुचाकी + हलके परिवहन वाहन",
+    "Not applicable": "लागू नाही"
+  };
+  var DOCS = [
+    ["DL", "वाहन चालक परवाना", "RTO नोंदीशी पडताळलेला"],
+    ["BG", "बॅज / चालक प्राधिकरण", "RTO ठाणे यांच्याकडून पडताळलेले"],
+    ["PM", "वाहन परवाना (परमिट) व योग्यता प्रमाणपत्र", "वैध"],
+    ["MD", "वैद्यकीय तंदुरुस्ती प्रमाणपत्र", "वैध – वार्षिक तपासणी"],
+    ["KY", "कल्याण मंडळ सदस्यत्व नोंद", "सक्रिय सदस्य – वर्गणी अद्ययावत"]
+  ];
+
+  function silhouette() {
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200"><rect width="160" height="200" fill="#fdecea"/>' +
+      '<circle cx="80" cy="76" r="34" fill="#c62828" opacity=".75"/><path d="M16 200c0-38 29-62 64-62s64 24 64 62z" fill="#c62828" opacity=".75"/></svg>';
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+  function maskPhone(p) {
+    var d = String(p || "").replace(/\D/g, "");
+    if (d.length < 6) return p || "-";
+    return "+९१ " + mr(d.slice(-10, -8)) + "•••• ••" + mr(d.slice(-2));
+  }
+  function row(k, v) { return "<dt>" + k + "</dt><dd>" + v + "</dd>"; }
+  function qrFor(url) {
+    if (typeof qrcode === "undefined") return '<div style="font:11px monospace;text-align:center;padding-top:30px">QR</div>';
+    var q = qrcode(0, "M"); q.addData(url); q.make();
+    return q.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+  }
+  function mrNow() {
+    var d = new Date();
+    return mr(d.getDate()) + " " + MONTHS[d.getMonth()] + " " + mr(d.getFullYear()) + ", " +
+      mr(String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0"));
+  }
+  function demoLinks() {
+    return [["MPV8FQ2M4XD", "वैध"], ["MPV3WD7Z8QN", "नूतनीकरण जवळ"], ["MPV6KM1V5RB", "मुदत संपलेले"],
+            ["MPV2NH4C7YT", "निलंबित"], ["XYZ123", "आढळले नाही"]].map(function (d) {
+      return '<a href="?t=' + d[0] + '">' + d[1] + '</a>';
+    }).join("");
+  }
+
+  function cardBlock() {
+    var token = new URLSearchParams(location.search).get("t") || DEFAULT_TOKEN;
+    var h = findHolder(token), st = statusOf(h);
+    var head = {
+      active:    ["ok",   "✓", "वैध ओळखपत्र",          "हे कार्ड वैध असून सध्या सक्रिय आहे"],
+      expired:   ["bad",  "✕", "मुदत संपलेले ओळखपत्र", "या कार्डची वैधता संपली आहे — नूतनीकरण आवश्यक"],
+      suspended: ["warn", "!", "निलंबित ओळखपत्र",       "हे कार्ड सध्या निलंबित आहे — स्वीकारू नये"],
+      revoked:   ["bad",  "✕", "रद्द केलेले ओळखपत्र",   "हे कार्ड रद्द करण्यात आले आहे"],
+      notfound:  ["bad",  "?", "ओळखपत्र आढळले नाही",    "या कोडशी जुळणारे कार्ड नोंदीत नाही"]
+    }[st];
+    var tagColour = { active: ["#e3f6ec", "#1b7a3e"], expired: ["#fdecea", "#c62828"], suspended: ["#fff4de", "#9a6700"], revoked: ["#fdecea", "#c62828"] };
+
+    var out = '<div class="sec"><p class="sec-h">चालक डिजिटल प्रोफाइल</p>' +
+      '<div class="vcard" style="margin-bottom:12px"><div class="vh ' + head[0] + '"><div class="mk">' + head[1] + '</div>' +
+      '<div><b>' + head[2] + '</b><small>' + head[3] + '</small></div></div>' +
+      '<div class="vf"><span style="color:#999">पडताळणी कोड: ' + esc(token.toUpperCase()) + '</span>' +
+      '<a href="msrtc.html#/verify/' + encodeURIComponent(token) + '">पडताळणी नोंद ›</a></div></div>';
+
+    if (!h) {
+      return out + '<div class="demo-pick">इतर नमुना कार्ड: ' + demoLinks() + '</div></div>';
+    }
+
+    var tc = tagColour[st] || tagColour.active;
+    out += '<div class="prof">' +
+      '<div class="ph-head">' +
+        '<img class="big-ph" src="' + esc(h.photo || silhouette()) + '" alt="">' +
+        '<div style="min-width:0">' +
+          '<p class="pn">' + esc(h.nameMr || h.name) + '</p>' +
+          '<p class="pe">' + esc(h.name) + '</p>' +
+          '<div class="tags">' +
+            '<span class="tag" style="background:' + tc[0] + ';color:' + tc[1] + '">● ' + head[2] + '</span>' +
+            '<span class="tag" style="background:#fff3cd;color:#7a4a00">' + esc(VEHICLE_MR[h.vehicleType] || h.vehicleType) + '</span>' +
+          '</div>' +
+          '<p class="pe" style="margin-top:6px">नोंदणी क्र. <b style="color:#222">' + esc(h.regNo) + '</b></p>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="pcols">' +
+        '<div class="pgrp"><h3>👤 वैयक्तिक माहिती</h3><dl class="kv">' +
+          row("जन्मतारीख", mrDate(h.dob)) +
+          row("लिंग", GENDER_MR[h.gender] || "-") +
+          row("रक्तगट", esc(h.bloodGroup)) +
+          row("मोबाईल", maskPhone(h.mobile)) +
+          row("पत्ता", esc(h.addressMr || h.address)) +
+          row("आपत्कालीन संपर्क", esc(h.emergencyNameMr || h.emergencyName) + " · " + maskPhone(h.emergencyPhone)) +
+        '</dl></div>' +
+        '<div class="pgrp"><h3>🚦 परवाना व वाहन</h3><dl class="kv">' +
+          row("परवाना क्र.", esc(h.licenceNo)) +
+          row("परवाना प्रकार", esc(CLASS_MR[h.licenceClass] || h.licenceClass)) +
+          row("परवाना वैधता", mrDate(h.licenceValidTo)) +
+          row("बॅज क्र.", esc(h.badgeNo)) +
+          row("वाहन क्रमांक", esc(h.vehicleNo)) +
+          row("परमिट क्र.", esc(h.permitNo)) +
+          row("RTO कार्यालय", esc(h.rto)) +
+          row("स्टँड / मार्ग", esc(h.standMr || h.stand)) +
+        '</dl></div>' +
+      '</div>' +
+
+      '<div class="pcols">' +
+        '<div class="pgrp"><h3>🤝 कल्याणकारी मंडळ सदस्यत्व</h3><dl class="kv">' +
+          row("सदस्य दिनांक", mrDate(h.memberSince)) +
+          row("कार्ड जारी", mrDate(h.issuedOn)) +
+          row("कार्ड वैधता", mrDate(h.validTo) + " पर्यंत") +
+        '</dl>' +
+        (h.status === "suspended" ? '<p style="margin-top:10px;font-size:12.5px;color:#9a6700;font-weight:700">⚠ निलंबनाचे कारण: कार्ड हरवल्याची नोंद – नवीन कार्ड प्रक्रियेत</p>' : '') +
+        '</div>' +
+        '<div class="pgrp"><h3>📄 कागदपत्रे</h3><ul class="docs">' +
+          DOCS.map(function (d) {
+            return '<li><span class="di">' + d[0] + '</span><div><b>' + d[1] + '</b><small>' + d[2] + '</small></div><span class="ok">✓ पडताळले</span></li>';
+          }).join("") +
+        '</ul></div>' +
+      '</div>' +
+
+      '<div class="pgrp"><h3>🔳 QR पडताळणी संदर्भ</h3><div class="qrref">' +
+        '<div class="qr">' + qrFor(location.href.split("?")[0].split("#")[0] + "?t=" + token.toUpperCase()) + '</div>' +
+        '<div style="min-width:0"><dl class="kv" style="grid-template-columns:1fr">' +
+          '<dt>पडताळणी कोड</dt><dd>' + esc(h.token) + '</dd>' +
+          '<dt>तपासणी वेळ</dt><dd>' + mrNow() + '</dd>' +
+          '<dt>जारीकर्ता</dt><dd>धर्मवीर आनंद दिघे साहेब महाराष्ट्र प्रवासी वाहतूक चालक कल्याणकारी मंडळ</dd>' +
+        '</dl></div></div>' +
+        '<p style="margin-top:10px;font-size:11.5px;color:#9a8a82">🔒 गोपनीयतेसाठी मोबाईल क्रमांक अंशतः लपवले आहेत.</p>' +
+        '<div class="demo-pick">इतर नमुना कार्ड: ' + demoLinks() + '</div>' +
+      '</div>' +
+    '</div></div>';
+    return out;
+  }
+
+  /* ───────── Home content ───────── */
+  var STATS = [["५०,०००+", "सदस्य"], ["३३+", "जिल्हे"], ["१०+", "वर्षे सेवा"], ["६", "प्रमुख योजना"]];
+  var TICKER = [
+    "📋 नवीन सभासद नोंदणी सुरू — अर्ज ऑनलाइन भरा व स्मार्ट ओळखपत्र मिळवा",
+    "💰 सन्मान निधी योजना: पात्र सदस्यांना आर्थिक सहाय्य — आजच अर्ज करा",
+    "🛡️ अपघात विमा योजना: रस्ते अपघातात सदस्यांना ₹२ लाखांपर्यंत संरक्षण",
+    "📚 मुलांसाठी शिष्यवृत्ती योजना: सदस्यांच्या मुलांना शिक्षणासाठी अर्थसहाय्य",
+    "🤝 जीवन विमा योजना: सदस्याच्या निधनावर कुटुंबाला आर्थिक आधार",
+    "🆔 स्मार्ट सभासद ओळखपत्र: एकाच कार्डवर सर्व सदस्यत्व व योजनांची माहिती"
+  ];
+  var SERVICES = [
+    ["🆔", "#7a5224", "नोंदणी / नूतनीकरण", "सभासद ओळखपत्र अर्ज"],
+    ["💰", "#063a0f", "सन्मान निधी योजना", "आर्थिक सहाय्य"],
+    ["🤝", "#3a5a24", "जीवन विमा व अपंगत्व विमा", "विमा संरक्षण"],
+    ["🏥", "#1a6b3a", "आरोग्यविषयक लाभ", "वैद्यकीय सहाय्य"],
+    ["🩹", "#9e6e30", "कर्तव्यावर दुखापत सहाय्य", "दुखापत अर्थसहाय्य"],
+    ["🎓", "#4a7a24", "पाल्यांची शिष्यवृत्ती", "शिक्षण अर्थसहाय्य"],
+    ["🔧", "#5a4a24", "कामगार कौशल्य वृद्धी", "प्रशिक्षण योजना"],
+    ["📋", "#6d4c41", "तक्रार निवारण", "तक्रार नोंदवा"],
+    ["📞", "#7a5224", "हेल्पलाइन", "सदस्य सहाय्य केंद्र"],
+    ["🔍", "#8e6a20", "कार्ड पडताळणी", "ओळखपत्र तपासा"]
+  ];
+  var CONCESSIONS = [
+    ["निधी", "योजना", "#063a0f", "सन्मान निधी योजना", "दीर्घकाळ सेवेतील व आर्थिकदृष्ट्या दुर्बल सदस्यांना आर्थिक सहाय्य."],
+    ["विमा", "जीवन", "#9e6e30", "जीवन विमा व अपंगत्व विमा", "सदस्याच्या निधनावर किंवा अपंगत्वावर कुटुंबाला आर्थिक संरक्षण."],
+    ["आरोग्य", "लाभ", "#1a6b3a", "आरोग्यविषयक लाभ", "सदस्यांना आजार व रुग्णालय खर्चासाठी आर्थिक मदत."],
+    ["दुखापत", "सहाय्य", "#7a5224", "कर्तव्यावर दुखापत झाल्यास अर्थसहाय्य", "कर्तव्यावर असताना दुखापत झाल्यास सदस्याला तात्काळ अर्थसहाय्य."],
+    ["शिष्या", "वृत्ती", "#4a7a24", "पाल्यांसाठी शैक्षणिक शिष्यवृत्ती", "सदस्यांच्या मुलांना शालेय व उच्च शिक्षणासाठी अर्थसहाय्य योजना."],
+    ["कौशल्य", "वृद्धी", "#5a4a24", "कामगार कौशल्य वृद्धी योजना", "सदस्यांना व्यावसायिक प्रशिक्षण व कौशल्य विकासासाठी सहाय्य."]
+  ];
+
+
+  function homeHtml() {
+    var tick = TICKER.concat(TICKER).map(function (t) { return "<span>" + t + "<em>●</em></span>"; }).join("");
+    return '' +
+      '<div class="hero">' +
+        '<svg class="scene" viewBox="0 0 400 330" preserveAspectRatio="xMidYMax slice" aria-hidden="true">' +
+          '<circle cx="320" cy="120" r="46" fill="#ffc107" opacity=".35"/>' +
+          '<circle cx="320" cy="120" r="30" fill="#ffe082" opacity=".55"/>' +
+          '<path d="M0 230 L60 180 L110 215 L170 160 L230 210 L290 170 L350 205 L400 180 V330 H0Z" fill="#5a0f0f" opacity=".55"/>' +
+          '<path d="M0 250 L80 215 L150 245 L220 205 L300 240 L400 215 V330 H0Z" fill="#3a0808" opacity=".7"/>' +
+          '<rect x="0" y="272" width="400" height="58" fill="#1e1e1e"/>' +
+          '<rect x="0" y="272" width="400" height="3" fill="#ffc107"/>' +
+          '<g fill="#fff" opacity=".7"><rect x="10" y="300" width="36" height="4"/><rect x="80" y="300" width="36" height="4"/>' +
+          '<rect x="150" y="300" width="36" height="4"/><rect x="220" y="300" width="36" height="4"/><rect x="290" y="300" width="36" height="4"/><rect x="360" y="300" width="36" height="4"/></g>' +
+          '' +
+        '</svg>' +
+        '<div class="top">' +
+          '<div class="logo"><img src="msrtc-assets/mandal-logo.png" class="msrtc-logo" alt="MPVDWB"><div>' +
+            '<p class="a">अधिकृत डिजिटल सेवा · MPVDWB</p><p class="b">आनंद दिघे कल्याणकारी मंडळ</p></div></div>' +
+          '<div class="clock" id="clock"></div>' +
+        '</div>' +
+        '<div class="mid">' +
+          '<div class="ttl">' +
+            '<span class="k">DADSMPVCKM</span>' +
+            '<h2>धर्मवीर आनंद दिघे साहेब महाराष्ट्र प्रवासी वाहतूक चालक कल्याणकारी मंडळ</h2>' +
+            '<p class="s">चालकांच्या सेवेसाठी — सुरक्षित, विश्वासार्ह सेवा</p>' +
+          '</div>' +
+          '<div class="glass"><p class="gt">मंडळ — एका नजरेत</p><div class="gg">' +
+            STATS.map(function (s) { return '<div><b>' + s[0] + '</b><small>' + s[1] + '</small></div>'; }).join("") +
+          '</div></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="mstats">' + STATS.map(function (s) { return '<div><b>' + s[0] + '</b><small>' + s[1] + '</small></div>'; }).join("") + '</div>' +
+
+      '<div class="ticker" data-soon="घोषणा"><div class="live"><i></i><span>सूचना</span></div>' +
+        '<div class="run"><div class="track">' + tick + '</div></div></div>' +
+
+      cardBlock() +
+
+      '<div class="sec"><p class="sec-h">मंडळ सेवा व योजना</p><div class="grid">' +
+        SERVICES.map(function (s) {
+          return '<button class="svc" type="button" data-soon="' + s[2] + '">' +
+            '<div class="ic" style="background:' + s[1] + '14">' + s[0] + '</div>' +
+            '<div class="tx"><p>' + s[2] + '</p><p>' + s[3] + '</p></div></button>';
+        }).join("") +
+      '</div></div>' +
+
+      '<div class="sec"><p class="sec-h">आमचे वाहतूकदार</p><div class="fleet">' +
+        '<button class="bus" type="button" data-soon="ऑटो रिक्षा चालक">' +
+          '<div class="art" style="background:linear-gradient(180deg,#fff7f0,#f5e6dc);display:flex;align-items:center;justify-content:center;padding:8px">' +
+            '<img src="msrtc-assets/auto.png" alt="ऑटो" style="height:70px;width:auto;object-fit:contain">' +
+          '</div>' +
+          '<div class="bt"><b>ऑटो रिक्षा</b><small>नोंदणीकृत सदस्य</small></div>' +
+        '</button>' +
+        '<button class="bus" type="button" data-soon="टॅक्सी चालक">' +
+          '<div class="art" style="background:linear-gradient(180deg,#f0f7f0,#dcf0e0);display:flex;align-items:center;justify-content:center;padding:8px">' +
+            '<img src="msrtc-assets/taxi.png" alt="टॅक्सी" style="height:70px;width:auto;object-fit:contain">' +
+          '</div>' +
+          '<div class="bt"><b>टॅक्सी</b><small>नोंदणीकृत सदस्य</small></div>' +
+        '</button>' +
+        '<button class="bus" type="button" data-soon="तीनचाकी चालक">' +
+          '<div class="art" style="background:linear-gradient(180deg,#f7f5f0,#ece0dc);display:flex;align-items:center;justify-content:center;padding:8px">' +
+            '<span style="font-size:48px">🛺</span>' +
+          '</div>' +
+          '<div class="bt"><b>तीनचाकी</b><small>नोंदणीकृत सदस्य</small></div>' +
+        '</button>' +
+      '</div></div>' +
+
+      '<div class="sec"><p class="sec-h">मंडळ परिचय व्हिडिओ</p>' +
+        '<div style="border-radius:14px;overflow:hidden;background:#000;margin:0 0 4px">' +
+          '<video controls preload="none" style="width:100%;display:block;max-height:240px">' +
+            '<source src="msrtc-assets/MyVideo.mp4" type="video/mp4">' +
+          '</video>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="sec"><p class="sec-h">कल्याणकारी योजना</p><div class="conc">' +
+        CONCESSIONS.map(function (c) {
+          return '<div class="cc" style="border-left-color:' + c[2] + '"><div class="pct" style="background:' + c[2] + '"><b>' + c[0] + '</b><small>' + c[1] + '</small></div>' +
+            '<div><p>' + c[3] + '</p><p>' + c[4] + '</p></div></div>';
+        }).join("") +
+      '</div></div>' +
+
+      '<div class="sec"><button class="ai" type="button" data-soon="मंडळ सहाय्यक">' +
+        '<div class="h"><div class="av">🤖</div><div><b>मंडळ सहाय्यक AI</b><small>आपला डिजिटल सेवा सहाय्यक</small></div></div>' +
+        '<div class="chat"><div class="me"><span>माझे सभासद ओळखपत्र कसे मिळवायचे? 🙏</span></div>' +
+          '<div class="bot"><span>🤖</span><span>नमस्कार! मंडळात नोंदणी करण्यासाठी आपले वाहन परवाना क्र. व आधार कार्ड तयार ठेवा. ऑनलाइन अर्ज भरा व स्मार्ट सभासद ओळखपत्र मिळवा. मदतीसाठी हेल्पलाइनवर संपर्क करा.</span></div></div>' +
+        '<div class="cta"><span>💬</span><span>मंडळ सहाय्यकाला विचारा</span><span>›</span></div>' +
+      '</button></div>' +
+
+      '<div class="sec"><div class="alerts-h"><p class="sec-h" style="margin:0">ताज्या सूचना</p><span data-soon="सूचना">सर्व ›</span></div>' +
+        '<div class="al" style="background:#fff8e1;border:1.5px solid #ffc10755"><span class="em">📋</span><div><p>नवीन सभासद नोंदणी शिबिर: ठाणे, पुणे, नाशिक व नागपूर येथे ऑक्टोबर महिन्यात आयोजित.</p><p>१० मिनिटांपूर्वी</p></div></div>' +
+        '<div class="al" style="background:#fdecea;border:1.5px solid #c6282833"><span class="em">💰</span><div><p>सन्मान निधी योजनेचे लाभार्थी निवड: पात्र सदस्यांनी अर्ज १५ ऑक्टोबरपूर्वी सादर करावेत.</p><p>१ तासापूर्वी</p></div></div>' +
+        '<div class="al" style="background:#e8f5e9;border:1.5px solid #2e7d3233"><span class="em">✅</span><div><p>स्मार्ट सभासद ओळखपत्र पडताळणी सुविधा आता सर्व जिल्हा कार्यालयांमध्ये उपलब्ध.</p><p>आज</p></div></div>' +
+      '</div>' +
+
+      '<div class="sec"><p class="sec-h">सन्माननीय मार्गदर्शन</p><div class="pat">' +
+        LEADERS.map(function (l) {
+          return '<div><img src="' + l.img + '" alt="" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' +
+            '<span class="fb" style="background:linear-gradient(135deg,#c62828,#4a0a0a)">' + l.initials + '</span>' +
+            '<div style="min-width:0"><b>' + l.name + '</b><small style="color:#8e1414">' + l.sub + '</small></div></div>';
+        }).join("") +
+      '</div></div>' +
+
+      '<div class="slogan"><img src="msrtc-assets/mandal-logo.png" class="msrtc-logo" alt="MPVDWB"><div>' +
+        '<b>चालकांच्या हक्कांसाठी</b><small>सुरक्षित सेवा · वेळेवर लाभ · सर्व सदस्यांसाठी</small></div></div>' +
+      '<p class="powered">Powered by Micraft Solutions Pvt. Ltd. · प्रात्यक्षिक आवृत्ती</p>';
+  }
+
+  var DAYS = ["रविवार", "सोमवार", "मंगळवार", "बुधवार", "गुरुवार", "शुक्रवार", "शनिवार"];
+  function tickClock() {
+    var el = $("clock");
+    if (!el) return;
+    var d = new Date();
+    var hh = String(d.getHours()).padStart(2, "0"), mm = String(d.getMinutes()).padStart(2, "0");
+    el.innerHTML = '<b>' + mr(hh + ":" + mm) + '</b><small>' + DAYS[d.getDay()] + ', ' +
+      mr(d.getDate()) + ' ' + MONTHS[d.getMonth()] + '</small>';
+  }
+
+  function toast(msg) {
+    var t = $("toast");
+    t.textContent = msg;
+    t.classList.add("on");
+    clearTimeout(t._h);
+    t._h = setTimeout(function () { t.classList.remove("on"); }, 2200);
+  }
+
+  function startApp() {
+    $("app").hidden = false;
+    $("main").innerHTML = homeHtml();
+    tickClock();
+    setInterval(tickClock, 15000);
+
+    document.addEventListener("click", function (e) {
+      var el = e.target.closest("[data-soon]");
+      if (el) toast("“" + el.getAttribute("data-soon") + "” — पूर्ण ॲपमध्ये उपलब्ध");
+    });
+
+    var fab = $("fab"), bubble = $("bubble");
+    setTimeout(function () {
+      bubble.classList.add("on");
+      fab.classList.add("pulse");
+      setTimeout(function () { bubble.classList.remove("on"); }, 5000);
+    }, 3000);
+    document.addEventListener("mousedown", function () { bubble.classList.remove("on"); }, { once: true });
+  }
+})();
+</script>
+</body>
+</html>
