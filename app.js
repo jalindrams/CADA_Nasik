@@ -743,6 +743,18 @@
         '<div class="row"><span class="muted" style="font-size:13px">Campaign served:</span>' + switcher + "</div>" +
         '<a class="btn ghost sm" href="#/verify/' + esc(h.token) + '">Back to verification</a></div>' +
       "</div>" +
+      '<div class="panel" style="margin-top:16px"><div class="panel-head"><div>' +
+          '<h2 style="margin:0">Department videos &amp; schemes</h2>' +
+          '<p class="muted" style="margin:2px 0 0">Played to the passenger/citizen on scan. Content is supplied and approved by the Board before going live (RFP B).</p>' +
+        '</div><span class="badge active"><i class="dot"></i>Dynamic content</span></div>' +
+        '<div class="grid g2" style="margin-top:14px">' +
+          '<figure style="margin:0"><video controls preload="none" poster="msrtc-assets/mandal-banner.png" style="width:100%;border-radius:10px;background:#000;display:block"><source src="msrtc-assets/Video2.mp4" type="video/mp4"></video>' +
+            '<figcaption class="muted" style="font-size:12.5px;margin-top:6px">Welfare schemes &amp; benefits — awareness film</figcaption></figure>' +
+          '<figure style="margin:0"><video controls preload="none" poster="msrtc-assets/mandal-banner.png" style="width:100%;border-radius:10px;background:#000;display:block"><source src="msrtc-assets/Vidoe3.mp4" type="video/mp4"></video>' +
+            '<figcaption class="muted" style="font-size:12.5px;margin-top:6px">Board / department introduction film</figcaption></figure>' +
+        '</div>' +
+        '<div class="note" style="margin-top:12px">Dynamic QR: this playlist can be swapped by the Board at any time without re-issuing cards — the code resolves to a server-controlled content set.</div>' +
+      '</div>' +
       '<div class="split">' +
         '<div class="panel"><h2>Proposed AR / MR flow</h2>' +
           '<ul class="timeline">' +
