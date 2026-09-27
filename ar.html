@@ -6,14 +6,8 @@
 <meta name="theme-color" content="#3d2612">
 <meta name="robots" content="noindex,nofollow">
 <title>AR / MR अनुभव · स्मार्ट सभासद ओळखपत्र</title>
-<meta name="description" content="App-less interactive WebAR launched from a smart-card QR: member identity, welfare schemes, department film and a 3D sponsor ad float around the card and expand to centre on tap. DADSMPVCKM RFP prototype.">
+<meta name="description" content="App-less immersive board launched from a smart-card QR: a floating 3D panel that gently swings and shows member identity, welfare schemes, a sponsored ad and department film — each opens full-screen on tap. DADSMPVCKM RFP prototype.">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
-<script type="module">
-  // Self-hosted first (works on isolated / government networks), CDN as fallback.
-  import("./msrtc-assets/model-viewer.min.js")
-    .catch(function () { return import("https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"); })
-    .catch(function () { window.__mvFailed = true; window.dispatchEvent(new Event("mv-failed")); });
-</script>
 <style>
   :root{
     --brown-d:#3d2612; --brown:#7a5224; --brown-m:#9e6e30;
@@ -37,88 +31,89 @@
   .live i{width:7px;height:7px;border-radius:50%;background:#39d353;box-shadow:0 0 8px #39d353;animation:pulse 1.4s infinite}
   @keyframes pulse{50%{opacity:.4}}
 
-  .stage-wrap{flex:1;position:relative;min-height:0;perspective:1100px}
-  model-viewer{width:100%;height:100%;background:
-    radial-gradient(ellipse at 50% 34%,#6a461f 0%,#31200f 60%,#160c05 100%);--poster-color:transparent}
+  /* immersive stage */
+  .scene{flex:1;position:relative;min-height:0;display:flex;align-items:center;justify-content:center;
+    perspective:1300px;perspective-origin:50% 46%;
+    background:radial-gradient(ellipse at 50% 36%,#6a461f 0%,#31200f 58%,#160c05 100%);overflow:hidden}
+  .scene::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(90deg,rgba(201,151,31,.05) 0 1px,transparent 1px 46px),
+               repeating-linear-gradient(0deg,rgba(201,151,31,.05) 0 1px,transparent 1px 46px);
+    mask:radial-gradient(ellipse at 50% 46%,#000,transparent 72%)}
+  .board-wrap{animation:bob 5.5s ease-in-out infinite;transform-style:preserve-3d}
+  @keyframes bob{0%,100%{transform:translateY(-6px)}50%{transform:translateY(10px)}}
+  .board{width:min(560px,92vw);transform-style:preserve-3d;animation:swing 7.5s ease-in-out infinite;
+    border-radius:20px;background:linear-gradient(160deg,rgba(52,33,15,.96),rgba(30,18,8,.96));
+    border:1px solid var(--brown-m);box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 1px rgba(201,151,31,.15) inset;
+    padding:0 0 14px;overflow:hidden}
+  @keyframes swing{0%{transform:rotateY(-40deg)}50%{transform:rotateY(40deg)}100%{transform:rotateY(-40deg)}}
+  .scene.focus .board{animation-play-state:paused;filter:blur(3px) brightness(.55)}
+  .scene.focus .board-wrap{animation-play-state:paused}
 
-  /* orbiting chips — an absolute overlay in front of the 3D card (fully controllable) */
-  .chip-layer{position:absolute;inset:0;z-index:14;pointer-events:none;transition:opacity .55s ease}
-  .chip{position:absolute;pointer-events:auto;display:flex;align-items:center;gap:7px;white-space:nowrap;
-    background:rgba(28,17,8,.95);border:1px solid var(--brown-m);border-radius:22px;padding:6px 13px 6px 6px;
-    box-shadow:0 8px 20px rgba(0,0,0,.55);font-family:inherit;cursor:pointer;
-    animation:bob 3.6s ease-in-out infinite;transition:box-shadow .3s,border-color .3s}
-  .chip em{font-style:normal;font-size:12.5px;font-weight:800;color:#fff}
-  .chip .ci{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
-  .ci.gold{background:var(--gold);color:var(--brown-d)} .ci.green{background:var(--green);color:#fff}
-  .ci.brownm{background:var(--brown-m);color:#fff} .ci.adc{background:linear-gradient(135deg,#e8c766,#b8860b);color:var(--brown-d)}
-  .chip:active{box-shadow:0 4px 12px rgba(0,0,0,.5)}
-  .chip::after{content:"";position:absolute;inset:-3px;border-radius:24px;border:2px solid var(--gold);opacity:0}
-  .chip.pinged::after{animation:ring2 .6s ease}
-  @keyframes ring2{from{transform:scale(.92);opacity:1}to{transform:scale(1.3);opacity:0}}
-  /* orbit anchor points around the card */
-  .pos-r{left:80%;top:43%} .pos-l{left:20%;top:43%} .pos-t{left:50%;top:15%} .pos-b{left:50%;top:73%}
-  .pos-r{animation-delay:-.4s} .pos-l{animation-delay:-1.4s} .pos-t{animation-delay:-2.2s} .pos-b{animation-delay:-3s}
-  @keyframes bob{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-58%)}}
-  /* hide the whole chip layer when the card turns away */
-  .stage-wrap.backface .chip-layer{opacity:0;pointer-events:none}
-  /* while a card is focused: dim the chips but keep them tappable (tap another to swap) */
-  .stage-wrap.focusing .chip-layer{opacity:.45}
-  .stage-wrap.focusing .chip{animation:none}
-  .stage-wrap.focusing .chip.active{opacity:0;pointer-events:none}
+  .board-head{display:flex;align-items:center;gap:11px;padding:13px 16px;
+    background:linear-gradient(90deg,var(--brown-d),#5a3c16);border-bottom:1px solid rgba(201,151,31,.3)}
+  .board-head img{width:38px;height:38px;border-radius:8px;flex-shrink:0;background:#fff2;object-fit:contain}
+  .board-head b{display:block;font-size:14.5px;color:#fff;line-height:1.1}
+  .board-head small{color:var(--gold-l);font-size:11.5px;font-weight:700}
+  .board-head .qr{margin-left:auto;width:34px;height:34px;background:#fff;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;color:#000;font-size:9px;font-weight:800}
+
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
+  .tile{position:relative;text-align:left;border:1px solid #4a3016;border-radius:14px;padding:13px;cursor:pointer;
+    background:rgba(36,21,5,.9);color:#fff;font-family:inherit;overflow:hidden;transform:translateZ(24px);
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;min-height:118px}
+  .tile:hover,.tile:active{transform:translateZ(38px) scale(1.02);border-color:var(--gold);box-shadow:0 10px 26px rgba(0,0,0,.5)}
+  .tile .ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:9px}
+  .ic.gold{background:var(--gold);color:var(--brown-d)} .ic.green{background:var(--green);color:#fff}
+  .ic.brownm{background:var(--brown-m);color:#fff} .ic.adc{background:linear-gradient(135deg,#e8c766,#b8860b);color:var(--brown-d)}
+  .tile h3{margin:0 0 3px;font-size:14px;font-weight:800}
+  .tile p{margin:0;font-size:11.5px;color:var(--mut);line-height:1.25}
+  .tile .thumb{width:100%;height:44px;border-radius:8px;object-fit:cover;margin-top:6px;display:block}
+  .tile .go{position:absolute;right:11px;top:12px;color:var(--gold-l);font-size:15px;font-weight:800;opacity:.7}
+  .tile.ad .shine{position:absolute;top:0;left:-60%;width:38%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);animation:shine 2.6s linear infinite}
+  @keyframes shine{to{left:135%}}
 
   .hint{position:absolute;left:50%;transform:translateX(-50%);top:12px;z-index:12;
     background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.18);border-radius:20px;
     padding:5px 13px;font-size:11.5px;color:#fff;pointer-events:none;transition:opacity .5s}
 
-  /* the FOCUS card that flies to centre */
-  #focus{position:absolute;left:50%;top:45%;width:min(310px,86%);z-index:24;
-    transform:translate(-50%,-50%) scale(.25);opacity:0;transform-origin:center;pointer-events:none;
-    transition:transform .5s cubic-bezier(.33,1.35,.5,1),opacity .34s ease}
-  #focus.show{opacity:1;pointer-events:auto}
-  .fcard{background:rgba(26,15,7,.98);border:1px solid var(--brown-m);border-radius:16px;overflow:hidden;
-    box-shadow:0 24px 60px rgba(0,0,0,.65)}
-  .fcard .fh{display:flex;align-items:center;gap:9px;padding:12px 14px;font-size:14px;font-weight:800;color:var(--brown-d)}
-  .fh.gold{background:var(--gold)} .fh.green{background:var(--green);color:#fff}
-  .fh.brownm{background:var(--brown-m);color:#fff} .fh.adc{background:linear-gradient(135deg,#e8c766,#b8860b)}
-  .fh .x{margin-left:auto;width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.22);color:inherit;
-    border:none;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center}
-  .fb{padding:14px}
-  .who{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-  .who .ph{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--brown-m),var(--brown-d));
-    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:22px;color:#fff;flex-shrink:0}
-  .who b{display:block;font-size:16px;color:#fff;line-height:1.15}
-  .who small{color:var(--mut);font-size:12px}
-  .kv{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:6px 0;border-bottom:1px solid #33210f}
-  .kv:last-child{border-bottom:none}
-  .kv span{color:var(--mut)} .kv b{color:#fff;font-weight:700}
-  .st{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;padding:5px 12px;border-radius:20px;margin-top:10px}
+  /* backdrop + full-screen popup */
+  .backdrop{position:fixed;inset:0;z-index:35;background:rgba(10,6,2,.55);opacity:0;pointer-events:none;transition:opacity .35s}
+  .backdrop.show{opacity:1;pointer-events:auto}
+  .popup{position:fixed;left:50%;top:46%;width:min(360px,92vw);z-index:40;
+    transform:translate(-50%,-50%) scale(.18);opacity:0;transform-origin:center;pointer-events:none;
+    transition:transform .52s cubic-bezier(.34,1.4,.5,1),opacity .32s ease}
+  .popup.show{opacity:1;pointer-events:auto}
+  .pcard{background:rgba(26,15,7,.99);border:1px solid var(--brown-m);border-radius:18px;overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.7)}
+  .pcard .ph{display:flex;align-items:center;gap:10px;padding:14px 16px;font-size:15px;font-weight:800;color:var(--brown-d)}
+  .ph.gold{background:var(--gold)} .ph.green{background:var(--green);color:#fff}
+  .ph.brownm{background:var(--brown-m);color:#fff} .ph.adc{background:linear-gradient(135deg,#e8c766,#b8860b)}
+  .ph .x{margin-left:auto;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.22);color:inherit;border:none;
+    font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .pb{padding:16px}
+  .who{display:flex;align-items:center;gap:13px;margin-bottom:12px}
+  .who .av{width:58px;height:58px;border-radius:13px;background:linear-gradient(135deg,var(--brown-m),var(--brown-d));
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px;color:#fff;flex-shrink:0}
+  .who b{display:block;font-size:17px;color:#fff;line-height:1.15}
+  .who small{color:var(--mut);font-size:12.5px}
+  .kv{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:8px 0;border-bottom:1px solid #33210f}
+  .kv:last-child{border-bottom:none} .kv span{color:var(--mut)} .kv b{color:#fff;font-weight:700}
+  .st{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;padding:6px 14px;border-radius:20px;margin-top:12px}
   .st.ok{background:rgba(57,211,83,.18);color:#7ee59a} .st.bad{background:rgba(230,80,60,.18);color:#ffb0a3}
   .st.warn{background:rgba(230,180,40,.18);color:#ffd66b}
-  .slist{display:flex;flex-direction:column;gap:8px}
-  .slist .si{display:flex;align-items:center;gap:10px;background:#241505;border:1px solid #3a2410;border-radius:10px;padding:9px 11px}
-  .slist .si .d{width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
-  .slist .si b{font-size:13px;font-weight:700}
+  .slist{display:flex;flex-direction:column;gap:9px}
+  .slist .si{display:flex;align-items:center;gap:11px;background:#241505;border:1px solid #3a2410;border-radius:11px;padding:11px 13px}
+  .slist .si .d{width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .slist .si b{font-size:13.5px;font-weight:700}
   .adbox{position:relative;overflow:hidden}
-  .adbox .tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-l);font-weight:800}
-  .adbox b{display:block;font-size:17px;color:#fff;margin:4px 0 6px}
-  .adbox p{color:var(--mut);font-size:12.5px;margin:0 0 12px}
-  .adbox .cta{display:inline-block;background:var(--gold);color:var(--brown-d);border-radius:9px;padding:9px 16px;font-size:13px;font-weight:800}
+  .adbox .tag{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-l);font-weight:800}
+  .adbox b{display:block;font-size:19px;color:#fff;margin:5px 0 7px}
+  .adbox p{color:var(--mut);font-size:13px;margin:0 0 14px}
+  .adbox .cta{display:inline-block;background:var(--gold);color:var(--brown-d);border-radius:10px;padding:10px 18px;font-size:13.5px;font-weight:800}
   .adbox .shine{position:absolute;top:0;left:-60%;width:38%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);animation:shine 2.4s linear infinite}
-  @keyframes shine{to{left:135%}}
-  .fvid{width:100%;border-radius:10px;display:block;background:#000;max-height:40vh}
-  .fnote{font-size:11px;color:#8a7256;margin-top:10px;text-align:center}
-
-  .ar-btn{position:absolute;left:50%;transform:translateX(-50%);bottom:14px;z-index:20;display:none;
-    align-items:center;gap:8px;background:var(--gold);color:var(--brown-d);border:none;border-radius:999px;
-    padding:11px 22px;font-family:inherit;font-size:15px;font-weight:800;box-shadow:0 8px 24px rgba(201,151,31,.5);cursor:pointer}
-  .ar-btn.show{display:flex} .ar-btn svg{width:18px;height:18px}
-  .ar-btn:active{transform:translateX(-50%) scale(.97)}
-
-  .fallback{position:absolute;inset:0;z-index:25;display:none;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;padding:24px;gap:14px;background:radial-gradient(ellipse at 50% 30%,#5a3c16,#160c05);overflow:auto}
-  .fallback.show{display:flex}
-  .fallback .fcard{width:min(330px,90%);color:#fff}
-  .fallback p{color:var(--gold-l);font-size:12.5px;max-width:330px}
+  .pvid{width:100%;border-radius:11px;display:block;background:#000;max-height:44vh}
+  .pnote{font-size:11.5px;color:#8a7256;margin-top:12px;text-align:center}
 
   .sheet{position:relative;z-index:16;background:#20130a;border-top:1px solid #4a3016;border-radius:16px 16px 0 0;
     padding:10px 14px calc(env(safe-area-inset-bottom) + 12px)}
@@ -138,50 +133,51 @@
     <div class="live"><i></i>WebAR थेट</div>
   </div>
 
-  <div class="stage-wrap" id="stage">
-    <div class="hint" id="hint">कार्ड फिरते — कोणत्याही चिन्हावर टॅप करा</div>
-
-    <model-viewer id="mv"
-      src="msrtc-assets/ar-card.glb"
-      alt="Smart card with orbiting member, welfare, ad and video chips"
-      ar ar-modes="webxr scene-viewer quick-look" ar-scale="auto"
-      camera-controls touch-action="pan-y" auto-rotate rotation-per-second="16deg"
-      interaction-prompt="none" shadow-intensity="1.1" exposure="1.15" reveal="auto"
-      camera-orbit="0deg 80deg 4.6m" min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg 9m" field-of-view="28deg">
-    </model-viewer>
-
-    <div class="chip-layer" id="chipLayer">
-      <button class="chip pos-r" data-focus="member"><span class="ci gold">🪪</span><em>सभासद</em></button>
-      <button class="chip pos-l" data-focus="welfare"><span class="ci green">🤝</span><em>योजना</em></button>
-      <button class="chip pos-t" data-focus="ad"><span class="ci adc">📣</span><em>3D जाहिरात</em></button>
-      <button class="chip pos-b" data-focus="video"><span class="ci brownm">🎬</span><em>व्हिडिओ</em></button>
-    </div>
-
-    <div id="focus"></div>
-
-    <div class="fallback" id="fallback">
-      <div class="fcard">
-        <div class="fh gold">🪪 स्मार्ट सभासद ओळखपत्र <span style="margin-left:auto"></span></div>
-        <div class="fb">
-          <div class="who"><div class="ph" id="fInit">ऑ</div><div><b id="fName">—</b><small id="fVeh">—</small></div></div>
-          <div class="kv"><span>नोंदणी क्र.</span><b id="fReg">—</b></div>
-          <div class="kv"><span>स्थिती</span><b id="fStatus">वैध</b></div>
-          <div class="slist" id="fSchemes" style="margin-top:10px"></div>
-          <video class="fvid" id="fVid" controls preload="none" playsinline poster="msrtc-assets/mandal-banner.png" style="margin-top:10px">
-            <source src="msrtc-assets/Video2.mp4" type="video/mp4"></video>
+  <div class="scene" id="scene">
+    <div class="hint" id="hint">तरंगता फलक — कोणत्याही टाइलवर टॅप करा</div>
+    <div class="board-wrap">
+      <div class="board" id="board">
+        <div class="board-head">
+          <img src="msrtc-assets/mandal-logo.png" alt="">
+          <div><b>स्मार्ट सभासद ओळखपत्र</b><small id="bName">—</small></div>
+          <div class="qr">QR</div>
+        </div>
+        <div class="tiles">
+          <button class="tile" data-focus="member">
+            <span class="go">›</span>
+            <div class="ic gold">🪪</div>
+            <h3>सभासद ओळख</h3>
+            <p id="tMember">—</p>
+          </button>
+          <button class="tile" data-focus="welfare">
+            <span class="go">›</span>
+            <div class="ic green">🤝</div>
+            <h3>कल्याण योजना</h3>
+            <p id="tWelfare">—</p>
+          </button>
+          <button class="tile ad" data-focus="ad">
+            <div class="shine"></div>
+            <span class="go">›</span>
+            <div class="ic adc">📣</div>
+            <h3>प्रायोजित जाहिरात</h3>
+            <p id="tAd">—</p>
+          </button>
+          <button class="tile" data-focus="video">
+            <span class="go">›</span>
+            <div class="ic brownm">🎬</div>
+            <h3>विभागाचा चित्रपट</h3>
+            <img class="thumb" src="msrtc-assets/mandal-banner.png" alt="">
+          </button>
         </div>
       </div>
-      <p id="fMsg">या उपकरणावर 3D दृश्य उपलब्ध नाही — वरील माहिती व व्हिडिओ वापरा.</p>
     </div>
-
-    <button class="ar-btn" id="arBtn">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
-      आपल्या जागेत बघा (AR)
-    </button>
   </div>
 
+  <div class="backdrop" id="backdrop"></div>
+  <div class="popup" id="popup"></div>
+
   <div class="sheet">
-    <div class="cmp"><span>App-less</span><span>इमेज ट्रॅकिंग</span><span>डायनॅमिक QR</span><span>≥30 FPS</span></div>
+    <div class="cmp"><span>App-less</span><span>इमर्सिव्ह 3D</span><span>डायनॅमिक सामग्री</span><span>≥30 FPS</span></div>
     <button class="voice" id="voiceBtn">🔊 मराठीत ऐका</button>
     <div class="foot">DADSMPVCKM · WebAR प्रात्यक्षिक · सामग्री मंडळाच्या मान्यतेनंतर प्रसारित</div>
   </div>
@@ -223,25 +219,23 @@
     return (new Date(h.validTo+"T00:00:00")<t)?["मुदत संपली","bad"]:["वैध","ok"];
   }
 
-  var h=findHolder(tok());
-  var D={};
+  var h=findHolder(tok()), D={};
   if(h){
     D.nm=h.nameMr||h.name; D.init=(D.nm||"").trim().charAt(0)||"ऑ";
     D.veh=VEH_MR[h.vehicleType]||h.vehicleType; D.st=statusOf(h);
     D.schemes=(h.schemes||[]).map(function(s){return SCHEME_MR[s]||s;});
     D.ad=ADS[Math.abs((h.token||"").split("").reduce(function(a,c){return a+c.charCodeAt(0);},0))%ADS.length];
-    setTxt("hName",D.nm); setTxt("hReg",h.regNo);
-    // fallback
-    setTxt("fInit",D.init); setTxt("fName",D.nm); setTxt("fVeh",D.veh); setTxt("fReg",h.regNo); setTxt("fStatus",D.st[0]);
-    $("fSchemes").innerHTML=D.schemes.map(function(s){return '<div class="si"><span class="d">✓</span><b>'+esc(s)+'</b></div>';}).join("");
+    setTxt("hName",D.nm); setTxt("hReg",h.regNo); setTxt("bName",D.nm);
+    setTxt("tMember", D.nm+" · "+D.veh);
+    setTxt("tWelfare", mrNum(D.schemes.length)+" नोंदणीकृत योजना");
+    setTxt("tAd", D.ad[0]+" — "+D.ad[1]);
   }
 
-  // ---- FOCUS card content builders ----
-  function focusHTML(type){
+  function popupHTML(type){
     if(!h) return "";
     if(type==="member") return ''+
-      '<div class="fcard"><div class="fh gold">🪪 सभासद ओळख<button class="x" data-x>✕</button></div><div class="fb">'+
-        '<div class="who"><div class="ph">'+esc(D.init)+'</div><div><b>'+esc(D.nm)+'</b><small>'+esc(D.veh)+' · '+esc(h.vehicleNo)+'</small></div></div>'+
+      '<div class="pcard"><div class="ph gold">🪪 सभासद ओळख<button class="x" data-x>✕</button></div><div class="pb">'+
+        '<div class="who"><div class="av">'+esc(D.init)+'</div><div><b>'+esc(D.nm)+'</b><small>'+esc(D.veh)+' · '+esc(h.vehicleNo)+'</small></div></div>'+
         '<div class="kv"><span>नोंदणी क्रमांक</span><b>'+esc(h.regNo)+'</b></div>'+
         '<div class="kv"><span>बॅज क्रमांक</span><b>'+esc(h.badgeNo)+'</b></div>'+
         '<div class="kv"><span>परवाना क्र.</span><b>'+esc(h.licenceNo)+'</b></div>'+
@@ -249,130 +243,72 @@
         '<span class="st '+D.st[1]+'">● '+D.st[0]+'</span>'+
       '</div></div>';
     if(type==="welfare") return ''+
-      '<div class="fcard"><div class="fh green">🤝 कल्याणकारी योजना<button class="x" data-x>✕</button></div><div class="fb">'+
+      '<div class="pcard"><div class="ph green">🤝 कल्याणकारी योजना<button class="x" data-x>✕</button></div><div class="pb">'+
         '<div class="slist">'+ (D.schemes.length?D.schemes:["—"]).map(function(s){return '<div class="si"><span class="d">✓</span><b>'+esc(s)+'</b></div>';}).join("") +'</div>'+
-        '<div class="fnote">सर्व नोंदणीकृत योजना एकाच ओळखपत्रावर उपलब्ध.</div>'+
+        '<div class="pnote">सर्व नोंदणीकृत योजना एकाच ओळखपत्रावर उपलब्ध.</div>'+
       '</div></div>';
     if(type==="ad") return ''+
-      '<div class="fcard"><div class="fh adc">📣 प्रायोजित 3D जाहिरात<button class="x" data-x>✕</button></div><div class="fb adbox">'+
-        '<div class="shine"></div>'+
-        '<span class="tag">'+esc(D.ad[0])+'</span>'+
-        '<b>'+esc(D.ad[1])+'</b><p>'+esc(D.ad[2])+'</p>'+
-        '<span class="cta">अधिक जाणून घ्या ›</span>'+
-        '<div class="fnote">स्कॅनवर चालणारी जाहिरात — मंडळाला दुय्यम उत्पन्न.</div>'+
+      '<div class="pcard"><div class="ph adc">📣 प्रायोजित 3D जाहिरात<button class="x" data-x>✕</button></div><div class="pb adbox">'+
+        '<div class="shine"></div><span class="tag">'+esc(D.ad[0])+'</span>'+
+        '<b>'+esc(D.ad[1])+'</b><p>'+esc(D.ad[2])+'</p><span class="cta">अधिक जाणून घ्या ›</span>'+
+        '<div class="pnote">स्कॅनवर चालणारी जाहिरात — मंडळाला दुय्यम उत्पन्न.</div>'+
       '</div></div>';
     if(type==="video") return ''+
-      '<div class="fcard"><div class="fh brownm">🎬 विभागाचा चित्रपट<button class="x" data-x>✕</button></div><div class="fb">'+
-        '<video class="fvid" controls autoplay playsinline poster="msrtc-assets/mandal-banner.png"><source src="msrtc-assets/Video2.mp4" type="video/mp4"></video>'+
-        '<div class="fnote">मंडळाने मंजूर केलेली विभागीय चित्रफीत.</div>'+
+      '<div class="pcard"><div class="ph brownm">🎬 विभागाचा चित्रपट<button class="x" data-x>✕</button></div><div class="pb">'+
+        '<video class="pvid" controls autoplay playsinline poster="msrtc-assets/mandal-banner.png"><source src="msrtc-assets/Video2.mp4" type="video/mp4"></video>'+
+        '<div class="pnote">मंडळाने मंजूर केलेली विभागीय चित्रफीत.</div>'+
       '</div></div>';
     return "";
   }
 
-  var mv=$("mv"), stage=$("stage"), focus=$("focus");
-  var curType=null, curChip=null, animating=false;
+  var scene=$("scene"), board=$("board"), popup=$("popup"), backdrop=$("backdrop");
+  var openType=null, openTile=null, busy=false;
 
-  function chipEl(type){ var c=document.querySelector('.chip[data-focus="'+type+'"]'); return c; }
-  function startTransformFrom(chip){
-    // fly the focus card FROM the chip's on-screen position to centre
-    var sr=stage.getBoundingClientRect();
-    var fcx=sr.left+sr.width*0.5, fcy=sr.top+sr.height*0.45; // focus resting centre
-    var ccx=fcx, ccy=fcy;
-    if(chip){ var cr=chip.getBoundingClientRect(); ccx=cr.left+cr.width/2; ccy=cr.top+cr.height/2; }
-    var dx=Math.round(ccx-fcx), dy=Math.round(ccy-fcy);
-    return "translate(calc(-50% + "+dx+"px), calc(-50% + "+dy+"px)) scale(.22) rotateY(45deg)";
+  function startFrom(tile){
+    // FLIP: fly the popup FROM the tapped tile's on-screen box to centre
+    var pr=popup.getBoundingClientRect();          // popup at rest (already centred)
+    var fcx=pr.left+pr.width/2, fcy=pr.top+pr.height/2;
+    var tr=tile.getBoundingClientRect(), tcx=tr.left+tr.width/2, tcy=tr.top+tr.height/2;
+    var s=Math.max(0.16, Math.min(tr.width/pr.width, 0.5));
+    var dx=Math.round(tcx-fcx), dy=Math.round(tcy-fcy);
+    return "translate(calc(-50% + "+dx+"px), calc(-50% + "+dy+"px)) scale("+s.toFixed(3)+")";
   }
-  function openFocus(type, chip){
-    if(animating) return;
-    curType=type; curChip=chip;
-    // mark active chip, dim others
-    document.querySelectorAll(".chip").forEach(function(c){ c.classList.remove("active"); });
-    if(chip) chip.classList.add("active");
-    stage.classList.add("focusing");
-    try{ mv.removeAttribute("auto-rotate"); }catch(e){}
-    focus.innerHTML=focusHTML(type);
-    focus.style.transition="none";
-    focus.style.transform=startTransformFrom(chip);
-    focus.classList.add("show");
-    // next frame -> animate to rest
+  function openPopup(type, tile){
+    if(busy) return;
+    openType=type; openTile=tile;
+    scene.classList.add("focus");
+    popup.innerHTML=popupHTML(type);
+    popup.classList.add("show"); backdrop.classList.add("show");
+    // measure at rest, then animate from tile
+    popup.style.transition="none";
+    popup.style.transform="translate(-50%,-50%) scale(1)";
+    void popup.getBoundingClientRect();
+    popup.style.transform=startFrom(tile);
     requestAnimationFrame(function(){ requestAnimationFrame(function(){
-      focus.style.transition="";
-      focus.style.transform="translate(-50%,-50%) scale(1) rotateY(0deg)";
+      popup.style.transition="";
+      popup.style.transform="translate(-50%,-50%) scale(1)";
     });});
-    bindClose();
+    var x=popup.querySelector("[data-x]"); if(x) x.addEventListener("click", function(e){ e.stopPropagation(); closePopup(); });
   }
-  function flyBackAndHide(then){
-    animating=true;
-    focus.style.transform=startTransformFrom(curChip);
-    focus.style.opacity="0";
+  function closePopup(){
+    if(!openType||busy) return;
+    busy=true;
+    var v=popup.querySelector("video"); if(v){ try{ v.pause(); }catch(e){} }
+    popup.style.transform=startFrom(openTile);  // zoom back into its tile
+    popup.style.opacity="0"; backdrop.classList.remove("show");
     setTimeout(function(){
-      focus.classList.remove("show"); focus.style.opacity=""; focus.innerHTML="";
-      animating=false; if(then) then();
-    },430);
-  }
-  function closeFocus(){
-    if(!curType) return;
-    var was=curChip;
-    stage.classList.remove("focusing");
-    try{ mv.setAttribute("auto-rotate",""); }catch(e){}
-    document.querySelectorAll(".chip").forEach(function(c){ c.classList.remove("active"); });
-    curType=null; curChip=null;
-    flyBackAndHide();
-    if(was){ was.classList.add("pinged"); setTimeout(function(){ was.classList.remove("pinged"); },600); }
-  }
-  function switchFocus(type, chip){
-    // move current back, then bring the new one to centre
-    var prev=curChip;
-    document.querySelectorAll(".chip").forEach(function(c){ c.classList.remove("active"); });
-    flyBackAndHide(function(){ openFocus(type, chip); });
-    if(prev){ prev.classList.add("pinged"); setTimeout(function(){ prev.classList.remove("pinged"); },600); }
-  }
-  function bindClose(){
-    var x=focus.querySelector("[data-x]");
-    if(x) x.addEventListener("click", function(e){ e.stopPropagation(); closeFocus(); });
+      popup.classList.remove("show"); popup.style.opacity=""; popup.innerHTML="";
+      scene.classList.remove("focus"); openType=null; openTile=null; busy=false;
+    },470);
   }
 
-  // chip taps
-  document.querySelectorAll(".chip").forEach(function(chip){
-    chip.addEventListener("click", function(e){
-      e.stopPropagation();
-      var type=chip.dataset.focus;
-      if(curType===type){ closeFocus(); return; }      // tap active -> send back
-      if(curType){ switchFocus(type, chip); return; }  // swap
-      openFocus(type, chip);                            // open fresh
-    });
+  document.querySelectorAll(".tile").forEach(function(t){
+    t.addEventListener("click", function(){ if(openType) return; openPopup(t.dataset.focus, t); });
   });
-  // tap empty space closes
-  stage.addEventListener("click", function(e){
-    if(curType && !focus.contains(e.target)) closeFocus();
-  });
+  backdrop.addEventListener("click", closePopup);
 
-  // hide chips as the card turns its back to us
-  function facing(){ try{ return Math.cos(mv.getCameraOrbit().theta); }catch(e){ return 1; } }
-  if(mv){
-    mv.addEventListener("camera-change", function(){
-      stage.classList.toggle("backface", facing()<0.12);
-    });
-    mv.addEventListener("load", function(){
-      var hint=$("hint"); if(hint) setTimeout(function(){ hint.style.opacity="0"; }, 4000);
-    });
-  }
-
-  // ---- robustness: WebGL / load failure -> 2D fallback ----
-  function showFallback(msg){ if(msg) setTxt("fMsg",msg); var f=$("fallback"); if(f) f.classList.add("show");
-    if(mv) mv.style.display="none"; var hint=$("hint"); if(hint) hint.style.display="none"; }
-  function hasWebGL(){ try{ var c=document.createElement("canvas");
-    return !!(window.WebGLRenderingContext&&(c.getContext("webgl")||c.getContext("experimental-webgl"))); }catch(e){ return false; } }
-  if(!hasWebGL()) showFallback();
-  window.addEventListener("mv-failed", function(){ showFallback("3D घटक लोड होऊ शकला नाही — वरील माहिती व व्हिडिओ वापरा."); });
-  setTimeout(function(){ if(window.__mvFailed || !customElements.get("model-viewer")) showFallback("3D घटक लोड होऊ शकला नाही — वरील माहिती व व्हिडिओ वापरा."); }, 6000);
-  if(mv) mv.addEventListener("error", function(){ showFallback("3D मॉडेल लोड होऊ शकले नाही — वरील माहिती व व्हिडिओ वापरा."); });
-
-  // AR button — only when truly supported, fully guarded
-  var arBtn=$("arBtn");
-  function gateAR(){ try{ if(mv&&mv.canActivateAR) arBtn.classList.add("show"); }catch(e){} }
-  if(mv){ mv.addEventListener("load", gateAR); setTimeout(gateAR, 2500); }
-  if(arBtn) arBtn.addEventListener("click", function(){ try{ if(mv&&mv.canActivateAR) mv.activateAR(); }catch(e){} });
+  // hide the intro hint after a moment
+  setTimeout(function(){ var hint=$("hint"); if(hint) hint.style.opacity="0"; }, 4200);
 
   // Marathi voice narration (guarded)
   var speaking=false, vb=$("voiceBtn");

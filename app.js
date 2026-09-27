@@ -765,7 +765,7 @@
             "<li><b>Action &amp; measurement</b><br><span class=\"muted\">Taps are logged per campaign, per district and per card series.</span></li>" +
           "</ul>" +
           '<div class="note">The panel above is a schematic. The <a href="ar.html?t=' + esc(h.token) + '" target="_blank" rel="noopener">live WebAR page</a> ' +
-          "runs a real app-less 3D experience (model-viewer / WebXR) with holder details, department films and a 3D sponsor layer - open it on a phone to place the card in your space.</div>" +
+          "runs a real app-less immersive experience: a floating 3D board that gently swings and carries holder identity, welfare schemes, a sponsored ad and the department film - tap any tile and it opens full-screen. Works in any phone browser, no install.</div>" +
         "</div>" +
         '<div class="panel"><h2>Campaign inventory (demo figures)</h2>' +
           '<div class="tbl-wrap"><table style="min-width:auto"><thead><tr><th>Campaign</th><th>Brand</th><th>Impressions</th></tr></thead><tbody>' +
