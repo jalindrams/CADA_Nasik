@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="mr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<meta name="theme-color" content="#3d2612">
+<meta name="robots" content="noindex,nofollow">
+<title>AR / MR अनुभव · स्मार्ट सभासद ओळखपत्र</title>
+<meta name="description" content="App-less immersive board launched from a smart-card QR: a floating 3D panel that gently swings and shows member identity, welfare schemes, a sponsored ad and department film — each opens full-screen on tap. DADSMPVCKM RFP prototype.">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --brown-d:#3d2612; --brown:#7a5224; --brown-m:#9e6e30;
+    --gold:#c9971f; --gold-l:#e8c766; --green:#1a6b3a; --green-d:#063a0f;
+    --ink:#2b1a10; --paper:#fff; --mut:#d9c7ae;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{margin:0;height:100%;font-family:'Baloo 2','Nirmala UI',system-ui,sans-serif;
+    background:#160c05;color:#fff;-webkit-tap-highlight-color:transparent;overflow:hidden}
+  #app{position:fixed;inset:0;display:flex;flex-direction:column}
+
+  .top{position:absolute;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:10px;
+    padding:calc(env(safe-area-inset-top) + 10px) 14px 12px;
+    background:linear-gradient(180deg,rgba(22,12,5,.95),rgba(22,12,5,0))}
+  .top .badge{width:38px;height:38px;border-radius:9px;background:var(--gold);color:var(--brown-d);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0}
+  .top h1{margin:0;font-size:14.5px;font-weight:800;line-height:1.1}
+  .top p{margin:0;font-size:11px;color:var(--gold-l);font-weight:600}
+  .top .live{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
+    background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:4px 10px}
+  .live i{width:7px;height:7px;border-radius:50%;background:#39d353;box-shadow:0 0 8px #39d353;animation:pulse 1.4s infinite}
+  @keyframes pulse{50%{opacity:.4}}
+
+  /* immersive stage */
+  .scene{flex:1;position:relative;min-height:0;display:flex;align-items:center;justify-content:center;
+    perspective:1300px;perspective-origin:50% 46%;
+    background:radial-gradient(ellipse at 50% 36%,#6a461f 0%,#31200f 58%,#160c05 100%);overflow:hidden}
+  .scene::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(90deg,rgba(201,151,31,.05) 0 1px,transparent 1px 46px),
+               repeating-linear-gradient(0deg,rgba(201,151,31,.05) 0 1px,transparent 1px 46px);
+    mask:radial-gradient(ellipse at 50% 46%,#000,transparent 72%)}
+  .board-wrap{animation:bob 5.5s ease-in-out infinite;transform-style:preserve-3d}
+  @keyframes bob{0%,100%{transform:translateY(-6px)}50%{transform:translateY(10px)}}
+  .board{width:min(560px,92vw);transform-style:preserve-3d;animation:swing 7.5s ease-in-out infinite;
+    border-radius:20px;background:linear-gradient(160deg,rgba(52,33,15,.96),rgba(30,18,8,.96));
+    border:1px solid var(--brown-m);box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 0 1px rgba(201,151,31,.15) inset;
+    padding:0 0 14px;overflow:hidden}
+  @keyframes swing{0%{transform:rotateY(-40deg)}50%{transform:rotateY(40deg)}100%{transform:rotateY(-40deg)}}
+  .scene.focus .board{animation-play-state:paused;filter:blur(3px) brightness(.55)}
+  .scene.focus .board-wrap{animation-play-state:paused}
+
+  .board-head{display:flex;align-items:center;gap:11px;padding:13px 16px;
+    background:linear-gradient(90deg,var(--brown-d),#5a3c16);border-bottom:1px solid rgba(201,151,31,.3)}
+  .board-head img{width:38px;height:38px;border-radius:8px;flex-shrink:0;background:#fff2;object-fit:contain}
+  .board-head b{display:block;font-size:14.5px;color:#fff;line-height:1.1}
+  .board-head small{color:var(--gold-l);font-size:11.5px;font-weight:700}
+  .board-head .qr{margin-left:auto;width:34px;height:34px;background:#fff;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;color:#000;font-size:9px;font-weight:800}
+
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
+  .tile{position:relative;text-align:left;border:1px solid #4a3016;border-radius:14px;padding:13px;cursor:pointer;
+    background:rgba(36,21,5,.9);color:#fff;font-family:inherit;overflow:hidden;transform:translateZ(24px);
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;min-height:118px}
+  .tile:hover,.tile:active{transform:translateZ(38px) scale(1.02);border-color:var(--gold);box-shadow:0 10px 26px rgba(0,0,0,.5)}
+  .tile .ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:9px}
+  .ic.gold{background:var(--gold);color:var(--brown-d)} .ic.green{background:var(--green);color:#fff}
+  .ic.brownm{background:var(--brown-m);color:#fff} .ic.adc{background:linear-gradient(135deg,#e8c766,#b8860b);color:var(--brown-d)}
+  .tile h3{margin:0 0 3px;font-size:14px;font-weight:800}
+  .tile p{margin:0;font-size:11.5px;color:var(--mut);line-height:1.25}
+  .tile .thumb{width:100%;height:44px;border-radius:8px;object-fit:cover;margin-top:6px;display:block}
+  .tile .go{position:absolute;right:11px;top:12px;color:var(--gold-l);font-size:15px;font-weight:800;opacity:.7}
+  .tile.ad .shine{position:absolute;top:0;left:-60%;width:38%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);animation:shine 2.6s linear infinite}
+  @keyframes shine{to{left:135%}}
+
+  .hint{position:absolute;left:50%;transform:translateX(-50%);top:12px;z-index:12;
+    background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.18);border-radius:20px;
+    padding:5px 13px;font-size:11.5px;color:#fff;pointer-events:none;transition:opacity .5s}
+
+  /* backdrop + full-screen popup */
+  .backdrop{position:fixed;inset:0;z-index:35;background:rgba(10,6,2,.55);opacity:0;pointer-events:none;transition:opacity .35s}
+  .backdrop.show{opacity:1;pointer-events:auto}
+  .popup{position:fixed;left:50%;top:46%;width:min(360px,92vw);z-index:40;
+    transform:translate(-50%,-50%) scale(.18);opacity:0;transform-origin:center;pointer-events:none;
+    transition:transform .52s cubic-bezier(.34,1.4,.5,1),opacity .32s ease}
+  .popup.show{opacity:1;pointer-events:auto}
+  .pcard{background:rgba(26,15,7,.99);border:1px solid var(--brown-m);border-radius:18px;overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,.7)}
+  .pcard .ph{display:flex;align-items:center;gap:10px;padding:14px 16px;font-size:15px;font-weight:800;color:var(--brown-d)}
+  .ph.gold{background:var(--gold)} .ph.green{background:var(--green);color:#fff}
+  .ph.brownm{background:var(--brown-m);color:#fff} .ph.adc{background:linear-gradient(135deg,#e8c766,#b8860b)}
+  .ph .x{margin-left:auto;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.22);color:inherit;border:none;
+    font-size:16px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .pb{padding:16px}
+  .who{display:flex;align-items:center;gap:13px;margin-bottom:12px}
+  .who .av{width:58px;height:58px;border-radius:13px;background:linear-gradient(135deg,var(--brown-m),var(--brown-d));
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px;color:#fff;flex-shrink:0}
+  .who b{display:block;font-size:17px;color:#fff;line-height:1.15}
+  .who small{color:var(--mut);font-size:12.5px}
+  .kv{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:8px 0;border-bottom:1px solid #33210f}
+  .kv:last-child{border-bottom:none} .kv span{color:var(--mut)} .kv b{color:#fff;font-weight:700}
+  .st{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:800;padding:6px 14px;border-radius:20px;margin-top:12px}
+  .st.ok{background:rgba(57,211,83,.18);color:#7ee59a} .st.bad{background:rgba(230,80,60,.18);color:#ffb0a3}
+  .st.warn{background:rgba(230,180,40,.18);color:#ffd66b}
+  .slist{display:flex;flex-direction:column;gap:9px}
+  .slist .si{display:flex;align-items:center;gap:11px;background:#241505;border:1px solid #3a2410;border-radius:11px;padding:11px 13px}
+  .slist .si .d{width:28px;height:28px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .slist .si b{font-size:13.5px;font-weight:700}
+  .adbox{position:relative;overflow:hidden}
+  .adbox .tag{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-l);font-weight:800}
+  .adbox b{display:block;font-size:19px;color:#fff;margin:5px 0 7px}
+  .adbox p{color:var(--mut);font-size:13px;margin:0 0 14px}
+  .adbox .cta{display:inline-block;background:var(--gold);color:var(--brown-d);border-radius:10px;padding:10px 18px;font-size:13.5px;font-weight:800}
+  .adbox .shine{position:absolute;top:0;left:-60%;width:38%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);animation:shine 2.4s linear infinite}
+  .pvid{width:100%;border-radius:11px;display:block;background:#000;max-height:44vh}
+  .pnote{font-size:11.5px;color:#8a7256;margin-top:12px;text-align:center}
+
+  .sheet{position:relative;z-index:16;background:#20130a;border-top:1px solid #4a3016;border-radius:16px 16px 0 0;
+    padding:10px 14px calc(env(safe-area-inset-bottom) + 12px)}
+  .cmp{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:9px}
+  .cmp span{font-size:10px;font-weight:700;color:var(--gold-l);background:rgba(201,151,31,.14);border:1px solid rgba(201,151,31,.35);border-radius:20px;padding:4px 10px}
+  .voice{display:flex;align-items:center;gap:8px;width:100%;justify-content:center;background:var(--green);color:#fff;border:none;
+    border-radius:10px;padding:11px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer}
+  .voice.speaking{background:var(--green-d)}
+  .foot{text-align:center;font-size:10px;color:#8a7256;margin-top:8px}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="top">
+    <div class="badge">ऑ</div>
+    <div><h1 id="hName">—</h1><p id="hReg">स्मार्ट सभासद ओळखपत्र</p></div>
+    <div class="live"><i></i>WebAR थेट</div>
+  </div>
+
+  <div class="scene" id="scene">
+    <div class="hint" id="hint">तरंगता फलक — कोणत्याही टाइलवर टॅप करा</div>
+    <div class="board-wrap">
+      <div class="board" id="board">
+        <div class="board-head">
+          <img src="msrtc-assets/mandal-logo.png" alt="">
+          <div><b>स्मार्ट सभासद ओळखपत्र</b><small id="bName">—</small></div>
+          <div class="qr">QR</div>
+        </div>
+        <div class="tiles">
+          <button class="tile" data-focus="member">
+            <span class="go">›</span>
+            <div class="ic gold">🪪</div>
+            <h3>सभासद ओळख</h3>
+            <p id="tMember">—</p>
+          </button>
+          <button class="tile" data-focus="welfare">
+            <span class="go">›</span>
+            <div class="ic green">🤝</div>
+            <h3>कल्याण योजना</h3>
+            <p id="tWelfare">—</p>
+          </button>
+          <button class="tile ad" data-focus="ad">
+            <div class="shine"></div>
+            <span class="go">›</span>
+            <div class="ic adc">📣</div>
+            <h3>प्रायोजित जाहिरात</h3>
+            <p id="tAd">—</p>
+          </button>
+          <button class="tile" data-focus="video">
+            <span class="go">›</span>
+            <div class="ic brownm">🎬</div>
+            <h3>विभागाचा चित्रपट</h3>
+            <img class="thumb" src="msrtc-assets/mandal-banner.png" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="backdrop" id="backdrop"></div>
+  <div class="popup" id="popup"></div>
+
+  <div class="sheet">
+    <div class="cmp"><span>App-less</span><span>इमर्सिव्ह 3D</span><span>डायनॅमिक सामग्री</span><span>≥30 FPS</span></div>
+    <button class="voice" id="voiceBtn">🔊 मराठीत ऐका</button>
+    <div class="foot">DADSMPVCKM · WebAR प्रात्यक्षिक · सामग्री मंडळाच्या मान्यतेनंतर प्रसारित</div>
+  </div>
+</div>
+
+<script src="data.js?v=3"></script>
+<script>
+(function () {
+  var SCHEME_MR = {
+    "Accident insurance cover": "अपघात विमा संरक्षण", "Term life cover": "जीवन विमा",
+    "Children's scholarship": "पाल्यांसाठी शिष्यवृत्ती", "Medical assistance": "आरोग्यविषयक लाभ",
+    "Retirement benefit fund": "सन्मान निधी"
+  };
+  var VEH_MR = { "Auto Rickshaw":"ऑटो रिक्षा","Taxi (Kaali-Peeli)":"टॅक्सी","App-based Cab":"ॲप कॅब",
+    "School Bus":"स्कूल बस","Tourist Vehicle":"पर्यटक वाहन","Goods Carrier (LCV)":"मालवाहू","Private Bus":"बस" };
+  var ADS = [
+    ["टायर एक्स्प्रेस", "आपल्या ऑटोसाठी सुरक्षित टायर", "सवलतीच्या दरात, जवळच्या केंद्रावर — मंडळ सदस्यांसाठी खास ऑफर."],
+    ["महा फ्युएल", "सीएनजी रिफिल कॅशबॅक", "प्रत्येक रिफिलवर बचत, थेट आपल्या खात्यात जमा."],
+    ["ड्राइव्ह-केअर विमा", "कमी हप्त्यात अपघात कवच", "मंडळ सदस्यांसाठी विशेष दरात संपूर्ण अपघात संरक्षण."]
+  ];
+  var MONTHS = ["जाने.","फेब्रु.","मार्च","एप्रि.","मे","जून","जुलै","ऑग.","सप्टें.","ऑक्टो.","नोव्हें.","डिसें."];
+  function mrNum(n){ return String(n).replace(/[0-9]/g,function(d){ return "०१२३४५६७८९"[d]; }); }
+  function mrDate(iso){ if(!iso) return "—"; var p=iso.split("-"); return mrNum(+p[2])+" "+MONTHS[+p[1]-1]+" "+mrNum(p[0]); }
+  function $(id){ return document.getElementById(id); }
+  function setTxt(id,t){ var e=$(id); if(e) e.textContent=t; }
+  function tok(){ return (new URLSearchParams(location.search).get("t")||"").toUpperCase(); }
+  function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+
+  function findHolder(t){
+    var list=(typeof SEED_HOLDERS!=="undefined")?SEED_HOLDERS:[];
+    for(var i=0;i<list.length;i++) if(String(list[i].token).toUpperCase()===t) return list[i];
+    return list[0]||null;
+  }
+  function statusOf(h){
+    if(!h) return ["—","warn"];
+    if(h.status==="suspended") return ["निलंबित","warn"];
+    if(h.status==="revoked") return ["रद्द","bad"];
+    var t=new Date(); t.setHours(0,0,0,0);
+    return (new Date(h.validTo+"T00:00:00")<t)?["मुदत संपली","bad"]:["वैध","ok"];
+  }
+
+  var h=findHolder(tok()), D={};
+  if(h){
+    D.nm=h.nameMr||h.name; D.init=(D.nm||"").trim().charAt(0)||"ऑ";
+    D.veh=VEH_MR[h.vehicleType]||h.vehicleType; D.st=statusOf(h);
+    D.schemes=(h.schemes||[]).map(function(s){return SCHEME_MR[s]||s;});
+    D.ad=ADS[Math.abs((h.token||"").split("").reduce(function(a,c){return a+c.charCodeAt(0);},0))%ADS.length];
+    setTxt("hName",D.nm); setTxt("hReg",h.regNo); setTxt("bName",D.nm);
+    setTxt("tMember", D.nm+" · "+D.veh);
+    setTxt("tWelfare", mrNum(D.schemes.length)+" नोंदणीकृत योजना");
+    setTxt("tAd", D.ad[0]+" — "+D.ad[1]);
+  }
+
+  function popupHTML(type){
+    if(!h) return "";
+    if(type==="member") return ''+
+      '<div class="pcard"><div class="ph gold">🪪 सभासद ओळख<button class="x" data-x>✕</button></div><div class="pb">'+
+        '<div class="who"><div class="av">'+esc(D.init)+'</div><div><b>'+esc(D.nm)+'</b><small>'+esc(D.veh)+' · '+esc(h.vehicleNo)+'</small></div></div>'+
+        '<div class="kv"><span>नोंदणी क्रमांक</span><b>'+esc(h.regNo)+'</b></div>'+
+        '<div class="kv"><span>बॅज क्रमांक</span><b>'+esc(h.badgeNo)+'</b></div>'+
+        '<div class="kv"><span>परवाना क्र.</span><b>'+esc(h.licenceNo)+'</b></div>'+
+        '<div class="kv"><span>वैधता</span><b>'+mrDate(h.validTo)+' पर्यंत</b></div>'+
+        '<span class="st '+D.st[1]+'">● '+D.st[0]+'</span>'+
+      '</div></div>';
+    if(type==="welfare") return ''+
+      '<div class="pcard"><div class="ph green">🤝 कल्याणकारी योजना<button class="x" data-x>✕</button></div><div class="pb">'+
+        '<div class="slist">'+ (D.schemes.length?D.schemes:["—"]).map(function(s){return '<div class="si"><span class="d">✓</span><b>'+esc(s)+'</b></div>';}).join("") +'</div>'+
+        '<div class="pnote">सर्व नोंदणीकृत योजना एकाच ओळखपत्रावर उपलब्ध.</div>'+
+      '</div></div>';
+    if(type==="ad") return ''+
+      '<div class="pcard"><div class="ph adc">📣 प्रायोजित 3D जाहिरात<button class="x" data-x>✕</button></div><div class="pb adbox">'+
+        '<div class="shine"></div><span class="tag">'+esc(D.ad[0])+'</span>'+
+        '<b>'+esc(D.ad[1])+'</b><p>'+esc(D.ad[2])+'</p><span class="cta">अधिक जाणून घ्या ›</span>'+
+        '<div class="pnote">स्कॅनवर चालणारी जाहिरात — मंडळाला दुय्यम उत्पन्न.</div>'+
+      '</div></div>';
+    if(type==="video") return ''+
+      '<div class="pcard"><div class="ph brownm">🎬 विभागाचा चित्रपट<button class="x" data-x>✕</button></div><div class="pb">'+
+        '<video class="pvid" controls autoplay playsinline poster="msrtc-assets/mandal-banner.png"><source src="msrtc-assets/Video2.mp4" type="video/mp4"></video>'+
+        '<div class="pnote">मंडळाने मंजूर केलेली विभागीय चित्रफीत.</div>'+
+      '</div></div>';
+    return "";
+  }
+
+  var scene=$("scene"), board=$("board"), popup=$("popup"), backdrop=$("backdrop");
+  var openType=null, openTile=null, busy=false;
+
+  function startFrom(tile){
+    // FLIP: fly the popup FROM the tapped tile's on-screen box to centre
+    var pr=popup.getBoundingClientRect();          // popup at rest (already centred)
+    var fcx=pr.left+pr.width/2, fcy=pr.top+pr.height/2;
+    var tr=tile.getBoundingClientRect(), tcx=tr.left+tr.width/2, tcy=tr.top+tr.height/2;
+    var s=Math.max(0.16, Math.min(tr.width/pr.width, 0.5));
+    var dx=Math.round(tcx-fcx), dy=Math.round(tcy-fcy);
+    return "translate(calc(-50% + "+dx+"px), calc(-50% + "+dy+"px)) scale("+s.toFixed(3)+")";
+  }
+  function openPopup(type, tile){
+    if(busy) return;
+    openType=type; openTile=tile;
+    scene.classList.add("focus");
+    popup.innerHTML=popupHTML(type);
+    popup.classList.add("show"); backdrop.classList.add("show");
+    // measure at rest, then animate from tile
+    popup.style.transition="none";
+    popup.style.transform="translate(-50%,-50%) scale(1)";
+    void popup.getBoundingClientRect();
+    popup.style.transform=startFrom(tile);
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      popup.style.transition="";
+      popup.style.transform="translate(-50%,-50%) scale(1)";
+    });});
+    var x=popup.querySelector("[data-x]"); if(x) x.addEventListener("click", function(e){ e.stopPropagation(); closePopup(); });
+  }
+  function closePopup(){
+    if(!openType||busy) return;
+    busy=true;
+    var v=popup.querySelector("video"); if(v){ try{ v.pause(); }catch(e){} }
+    popup.style.transform=startFrom(openTile);  // zoom back into its tile
+    popup.style.opacity="0"; backdrop.classList.remove("show");
+    setTimeout(function(){
+      popup.classList.remove("show"); popup.style.opacity=""; popup.innerHTML="";
+      scene.classList.remove("focus"); openType=null; openTile=null; busy=false;
+    },470);
+  }
+
+  document.querySelectorAll(".tile").forEach(function(t){
+    t.addEventListener("click", function(){ if(openType) return; openPopup(t.dataset.focus, t); });
+  });
+  backdrop.addEventListener("click", closePopup);
+
+  // hide the intro hint after a moment
+  setTimeout(function(){ var hint=$("hint"); if(hint) hint.style.opacity="0"; }, 4200);
+
+  // Marathi voice narration (guarded)
+  var speaking=false, vb=$("voiceBtn");
+  if(vb) vb.addEventListener("click", function(){
+    if(!("speechSynthesis" in window)) return;
+    var btn=this; if(speaking){ speechSynthesis.cancel(); return; }
+    var nm=(h&&(h.nameMr||h.name))||"सभासद";
+    var u=new SpeechSynthesisUtterance(nm+" यांचे धर्मवीर आनंद दिघे साहेब महाराष्ट्र प्रवासी वाहतूक चालक कल्याणकारी मंडळात स्वागत आहे. हे ओळखपत्र वैध असून सर्व कल्याणकारी योजनांचा लाभ यावर उपलब्ध आहे.");
+    try{ var vs=speechSynthesis.getVoices(); var pick=vs.filter(function(v){ return /^(mr|hi)/i.test(v.lang.replace("_","-")); })[0];
+      if(pick){ u.voice=pick; u.lang=pick.lang; } else u.lang="hi-IN"; }catch(e){ u.lang="hi-IN"; }
+    u.rate=0.9; u.pitch=1.1;
+    u.onstart=function(){ speaking=true; btn.classList.add("speaking"); btn.textContent="⏹ थांबवा"; };
+    u.onend=u.onerror=function(){ speaking=false; btn.classList.remove("speaking"); btn.textContent="🔊 मराठीत ऐका"; };
+    speechSynthesis.speak(u);
+  });
+})();
+</script>
+</body>
+</html>
